@@ -31,24 +31,35 @@ A fun typing game designed for kids around 10 years old. Pure front-end, no inst
 | Level 4 | Sentence Practice — type complete sentences |
 | Level 5 | Game Mode — typing bubbles to boost your speed |
 
+## 在线体验 / Live Demo
+
+👉 https://woxiaofa.github.io/typing-game/
+
 ## 使用方法 / Getting Started
+
+### 在线访问 / Online
+
+直接打开上面的 GitHub Pages 地址即可，无需安装任何东西。
+
+Just open the GitHub Pages link above — no installation needed.
+
+### 本地运行 / Local
 
 直接在浏览器中打开 `index.html` 文件即可使用。
 
 Just open `index.html` in your browser and start playing.
 
-也可以部署到任意静态网站托管服务（如 GitHub Pages）：
+也可以部署到任意静态网站托管服务：
 
-You can also deploy it to any static hosting service (e.g. GitHub Pages):
+You can also deploy it to any static hosting service:
 
 ```bash
-# 例如使用 GitHub Pages / e.g. with GitHub Pages
-git clone https://github.com/your-username/typing-game.git
+git clone https://github.com/woxiaofa/typing-game.git
 ```
 
-然后在仓库设置中开启 GitHub Pages 即可。
+本项目通过 **GitHub Pages** 部署：仓库 Settings → Pages → Source 选择 `Deploy from a branch`，分支选 `main`、目录选 `/ (root)` 即可。
 
-Then enable GitHub Pages in the repository settings.
+This project is deployed with **GitHub Pages**: Settings → Pages → Source: `Deploy from a branch`, branch `main`, folder `/ (root)`.
 
 ## 项目结构 / Project Structure
 
