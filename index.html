@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>打字游戏</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div id="main-menu" class="screen active">
+        <div class="container">
+            <h1 class="title">🎮 打字游戏</h1>
+            <p class="subtitle">让我们一起学习打字吧！</p>
+            
+            <div class="menu-buttons">
+                <button class="btn btn-primary" onclick="showLevelSelect()">开始游戏</button>
+                <button class="btn btn-secondary" onclick="showProgress()">我的进度</button>
+                <button class="btn btn-secondary" onclick="showSettings()">设置</button>
+            </div>
+            
+            <div class="progress-summary">
+                <div class="stat-item">
+                    <span class="stat-label">完成</span>
+                    <span class="stat-value" id="completed-levels">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">总星</span>
+                    <span class="stat-value" id="total-stars">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关卡选择界面 -->
+    <div id="level-select" class="screen">
+        <div class="container">
+            <h2>选择关卡</h2>
+            <div class="level-grid">
+                <div class="level-card" onclick="startLevel(1)">
+                    <div class="level-icon">⌨️</div>
+                    <div class="level-title">Level 1: 认识键盘</div>
+                    <div class="level-stars" id="level1-stars"></div>
+                </div>
+                <div class="level-card" onclick="startLevel(2)">
+                    <div class="level-icon">🔤</div>
+                    <div class="level-title">Level 2: 字母练习</div>
+                    <div class="level-stars" id="level2-stars"></div>
+                </div>
+                <div class="level-card" onclick="startLevel(3)">
+                    <div class="level-icon">📝</div>
+                    <div class="level-title">Level 3: 单词练习</div>
+                    <div class="level-stars" id="level3-stars"></div>
+                </div>
+                <div class="level-card" onclick="startLevel(4)">
+                    <div class="level-icon">📄</div>
+                    <div class="level-title">Level 4: 句子练习</div>
+                    <div class="level-stars" id="level4-stars"></div>
+                </div>
+                <div class="level-card" onclick="startLevel(5)">
+                    <div class="level-icon">🎯</div>
+                    <div class="level-title">Level 5: 游戏模式</div>
+                    <div class="level-stars" id="level5-stars"></div>
+                </div>
+            </div>
+            <button class="btn btn-back" onclick="showMainMenu()">返回</button>
+        </div>
+    </div>
+
+    <!-- 游戏界面 -->
+    <div id="game-screen" class="screen">
+        <div class="container">
+            <div class="game-header">
+                <button class="btn btn-small" onclick="exitGame()">返回</button>
+                <div class="game-stats">
+                    <span class="stat">⭐ <span id="current-stars">0</span></span>
+                    <span class="stat">✓ <span id="correct-count">0</span></span>
+                    <span class="stat">✗ <span id="wrong-count">0</span></span>
+                </div>
+            </div>
+
+            <!-- Level 1-4 通用界面 -->
+            <div id="practice-area" class="practice-area">
+                <div class="task-display">
+                    <div class="task-text" id="task-text"></div>
+                    <div class="task-image" id="task-image"></div>
+                </div>
+                
+                <div class="input-area">
+                    <div class="input-display" id="input-display"></div>
+                    <div class="input-hint" id="input-hint"></div>
+                </div>
+
+                <div class="virtual-keyboard-container">
+                    <div class="virtual-keyboard" id="virtual-keyboard"></div>
+                </div>
+
+                <div class="feedback-area" id="feedback-area"></div>
+            </div>
+
+            <!-- Level 5 游戏模式界面 -->
+            <div id="game-area" class="game-area" style="display: none;">
+                <div class="game-canvas" id="game-canvas">
+                    <div class="game-score">
+                        <div>得分: <span id="game-score">0</span></div>
+                        <div>时间: <span id="game-time">60</span>s</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 进度界面 -->
+    <div id="progress-screen" class="screen">
+        <div class="container">
+            <h2>我的进度</h2>
+            <div class="progress-details" id="progress-details"></div>
+            <button class="btn btn-back" onclick="showMainMenu()">返回</button>
+        </div>
+    </div>
+
+    <!-- 设置界面 -->
+    <div id="settings-screen" class="screen">
+        <div class="container">
+            <h2>设置</h2>
+            <div class="settings-list">
+                <div class="setting-item">
+                    <label>音效</label>
+                    <input type="checkbox" id="sound-enabled" checked onchange="toggleSound(this.checked)">
+                </div>
+                <div class="setting-item">
+                    <label>背景音乐</label>
+                    <input type="checkbox" id="music-enabled" checked onchange="toggleMusic(this.checked)">
+                </div>
+                <div class="setting-item">
+                    <label>字体大小</label>
+                    <select id="font-size" onchange="changeFontSize(this.value)">
+                        <option value="normal">正常</option>
+                        <option value="large">大</option>
+                        <option value="xlarge">超大</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-back" onclick="showMainMenu()">返回</button>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
