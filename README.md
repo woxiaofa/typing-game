@@ -4,6 +4,14 @@
 
 A fun typing game designed for kids around 10 years old. Pure front-end, no installation and no backend required.
 
+在线体验 · Live Demo: **https://woxiaofa.github.io/typing-game/**
+
+[![GitHub License](https://img.shields.io/github/license/woxiaofa/typing-game?style=flat-square)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/woxiaofa/typing-game?style=flat-square)](https://github.com/woxiaofa/typing-game/stargazers)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/woxiaofa/typing-game/pulls)
+[![Vanilla JS](https://img.shields.io/badge/dependency-none-informational?style=flat-square)](#技术栈--tech-stack)
+[![GitHub Pages](https://img.shields.io/badge/deploy-GitHub%20Pages-222?style=flat-square)](https://pages.github.com/)
+
 ## 功能特点 / Features
 
 - 🎮 **5 个等级 / 5 Levels**：从键盘认识到游戏模式，循序渐进
@@ -65,14 +73,23 @@ This project is deployed with **GitHub Pages**: Settings → Pages → Source: `
 
 ```
 typing-game/
-├── index.html        # 页面结构 / Page structure
+├── index.html            # 页面结构 + SEO 内容区 + JSON-LD 结构化数据
 ├── css/
-│   └── style.css     # 样式与动画 / Styles & animations
+│   └── style.css         # 样式与动画（含 SEO 内容区样式）
 ├── js/
-│   ├── storage.js    # 进度与设置存储（LocalStorage）/ Progress & settings storage
-│   ├── game.js       # 游戏逻辑 / Game logic
-│   └── main.js       # 入口与界面交互 / Entry & UI interaction
-├── favicon.ico
+│   ├── storage.js        # 进度与设置存储（LocalStorage）
+│   ├── game.js           # 游戏逻辑
+│   └── main.js           # 入口与界面交互
+├── robots.txt            # 爬虫规则（显式放行搜索引擎与 AI 爬虫）
+├── sitemap.xml           # 站点地图
+├── llms.txt              # AI 助手摘要文件（llmstxt 规范）
+├── manifest.webmanifest  # PWA 清单
+├── sw.js                 # Service Worker（离线缓存）
+├── og-image.png          # 社交分享大图 1200x630
+├── icon-*.png            # PWA 图标
+├── gen-assets.py         # 重新生成 OG 图与图标的脚本（需 Pillow）
+├── favicon.ico / favicon.svg
+├── LICENSE               # MIT
 └── README.md
 ```
 
@@ -80,6 +97,8 @@ typing-game/
 
 - HTML5 + CSS3 + JavaScript（原生，无任何依赖 / vanilla, zero dependencies）
 - 数据存储 / Storage: LocalStorage
+- PWA：manifest + Service Worker，可安装、离线可用
+- 结构化数据：Schema.org（`WebApplication` / `FAQPage` / `HowTo`）+ `llms.txt`，对搜索引擎与 AI 助手友好
 
 ## 设置 / Settings
 
@@ -97,3 +116,7 @@ typing-game/
 ## 许可证 / License
 
 MIT
+
+---
+
+**关键词 Keywords**: 打字游戏, 打字练习, 在线打字练习, 儿童打字, 少儿打字练习, 键盘练习, 指法练习, 打字速度测试, 免费打字软件, 打字泡泡, 虚拟键盘, typing game, typing practice, typing tutor, typing test, kids typing, keyboard practice, learn to type

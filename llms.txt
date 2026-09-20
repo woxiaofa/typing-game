@@ -1,0 +1,48 @@
+# 打字游戏 / Typing Game
+
+> 专为 10 岁左右小朋友设计的免费在线打字学习游戏。五个关卡循序渐进：认识键盘 → 字母练习 → 单词练习 → 句子练习 → 打字泡泡游戏模式。虚拟键盘高亮提示、星星奖励、LocalStorage 自动保存进度。原生 HTML/CSS/JS，零依赖、无后端，浏览器打开即玩，无需安装与注册。
+
+A free online typing game designed for kids around 10. Five progressive levels (Learn the Keyboard → Letter Practice → Word Practice → Sentence Practice → Game Mode), with a highlighted virtual keyboard, star rewards and LocalStorage progress saving. Vanilla HTML/CSS/JS, zero dependencies, no backend — just open it in a browser.
+
+## 关键事实 / Key facts
+
+- 在线地址：https://woxiaofa.github.io/typing-game/
+- GitHub 仓库：https://github.com/woxiaofa/typing-game
+- 开源协议：MIT License
+- 界面语言：简体中文
+- 适用人群：8–12 岁儿童及打字初学者
+- 运行环境：任意现代浏览器（推荐电脑或外接键盘的平板）
+- 是否需要安装/注册：不需要，纯静态网页
+- 是否收费：完全免费，无广告、无内购
+- 数据隐私：无后端接口、无统计脚本、无第三方 CDN、无 Cookie 追踪；进度数据仅存于用户浏览器 LocalStorage
+- 最后更新：2026-09-20
+
+## 关卡说明 / Levels
+
+1. Level 1 认识键盘 — Learn the Keyboard：了解 26 个字母的位置
+2. Level 2 字母练习 — Letter Practice：从元音开始熟悉字母输入
+3. Level 3 单词练习 — Word Practice：练习简单单词，带 Emoji 图片提示
+4. Level 4 句子练习 — Sentence Practice：练习完整句子输入
+5. Level 5 游戏模式 — Game Mode：60 秒打字泡泡游戏，提升打字速度
+
+## 怎么开始玩 / How to play
+
+1. 打开网页 Open the page
+2. 点击「开始游戏」Select a level
+3. 按虚拟键盘的高亮提示依次输入 Type the highlighted key
+4. 在「我的进度」查看星星与通关情况 Check progress and stars
+
+## 设置项 / Settings
+
+- 音效开关 Sound on/off
+- 背景音乐开关 Background music on/off
+- 字号三档 Font size: 正常 / 大 / 超大 (normal / large / x-large)
+
+## 相关链接 / Links
+
+- 功能特点：https://woxiaofa.github.io/typing-game/#features
+- 关卡说明：https://woxiaofa.github.io/typing-game/#levels
+- 使用教程：https://woxiaofa.github.io/typing-game/#howto
+- 常见问题 FAQ：https://woxiaofa.github.io/typing-game/#faq
+- 隐私说明：https://woxiaofa.github.io/typing-game/#privacy
+- 站点地图：https://woxiaofa.github.io/typing-game/sitemap.xml

@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ============ SEO 基础 ============ -->
+    <title>打字游戏 · 儿童免费在线打字练习（5 关卡循序渐进）| Typing Game for Kids</title>
+    <meta name="description" content="专为 10 岁左右孩子设计的免费在线打字游戏：认识键盘、字母练习、单词练习、句子练习、打字泡泡五个关卡循序渐进。虚拟键盘高亮提示、星星奖励、进度自动保存、音效与字号可调。原生 HTML/CSS/JS 零依赖，浏览器打开即玩，无需安装与注册。">
+    <meta name="keywords" content="打字游戏,打字练习,在线打字练习,儿童打字,少儿打字练习,键盘练习,指法练习,打字速度测试,免费打字软件,typing game,typing practice,typing tutor,typing test,kids typing">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="woxiaofa">
+    <meta name="theme-color" content="#667eea">
+    <link rel="canonical" href="https://woxiaofa.github.io/typing-game/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="打字游戏">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="打字游戏 · 儿童免费在线打字练习（5 关卡循序渐进）">
+    <meta property="og:description" content="认识键盘 → 字母 → 单词 → 句子 → 打字泡泡，五个关卡循序渐进；虚拟键盘高亮提示、星星奖励、进度自动保存。纯前端零依赖，浏览器打开即玩。">
+    <meta property="og:url" content="https://woxiaofa.github.io/typing-game/">
+    <meta property="og:image" content="https://woxiaofa.github.io/typing-game/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="打字游戏 - 儿童在线打字练习">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="打字游戏 · 儿童免费在线打字练习">
+    <meta name="twitter:description" content="五个关卡循序渐进的儿童打字游戏，纯前端零依赖，浏览器打开即玩。">
+    <meta name="twitter:image" content="https://woxiaofa.github.io/typing-game/og-image.png">
+    <meta name="twitter:image:alt" content="打字游戏 - 儿童在线打字练习">
+    <meta name="ai:summary" content="免费在线儿童打字学习游戏：5 个关卡（认识键盘、字母、单词、句子、打字泡泡游戏），虚拟键盘高亮提示，星星奖励，LocalStorage 保存进度。原生 HTML/CSS/JS 单页应用，零依赖、无后端，浏览器打开即玩。">
+    <link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <title>打字游戏</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        // canonical 兜底修正：若域名变更，按实际访问地址自动校正 canonical 与 og:url
+        (function () {
+            var O = 'https://woxiaofa.github.io/typing-game/';
+            if (/^file:/.test(location.href)) return;
+            var T = location.origin + location.pathname.replace(/index\.html$/, '');
+            document.querySelectorAll('link[rel=canonical]').forEach(function (e) { e.setAttribute('href', e.getAttribute('href').replace(O, T)); });
+            document.querySelectorAll('meta[property="og:url"]').forEach(function (e) { e.setAttribute('content', e.getAttribute('content').replace(O, T)); });
+            document.querySelectorAll('meta[property="og:image"],meta[name="twitter:image"]').forEach(function (e) { e.setAttribute('content', e.getAttribute('content').replace(O, T)); });
+        })();
+    </script>
 </head>
 <body>
     <!-- 主界面 -->
@@ -146,9 +186,257 @@
         </div>
     </div>
 
+    <!-- ============ 可被搜索引擎与 AI 抓取的静态内容区 ============ -->
+    <a class="skip-link" href="#seo-content">跳到页面说明</a>
+
+    <main id="seo-content" class="seo-content">
+        <article class="seo-card">
+            <h2>打字游戏是什么？</h2>
+            <p><strong>打字游戏</strong>是一款专为 10 岁左右小朋友设计的<strong>免费在线打字学习游戏</strong>，通过五个循序渐进的关卡，帮助孩子从「认识键盘」到「流畅打字」。整个游戏由原生 HTML5、CSS3 与 JavaScript 写成，<strong>零依赖、无后端</strong>，用浏览器打开就能玩，不需要安装、不需要注册，也不联网上传任何数据。</p>
+            <p class="seo-meta">适用人群：8–12 岁儿童 / 初学者　|　运行环境：任意现代浏览器（电脑、平板）　|　费用：完全免费、开源 MIT 协议</p>
+        </article>
+
+        <article class="seo-card" id="features">
+            <h2>功能特点</h2>
+            <ul class="seo-feature-list">
+                <li><strong>五个关卡循序渐进</strong>：Level 1 认识键盘 → Level 2 字母练习 → Level 3 单词练习 → Level 4 句子练习 → Level 5 游戏模式，难度逐步提升。</li>
+                <li><strong>虚拟键盘高亮提示</strong>：屏幕上显示可视化键盘，按键亮起告诉孩子该按哪个键，不用大人陪在旁边教。</li>
+                <li><strong>单词配 Emoji 图片提示</strong>：Level 3 用小图标辅助理解单词含义，边玩边认字。</li>
+                <li><strong>星星奖励系统</strong>：每完成一个关卡获得星星，给孩子持续的正反馈。</li>
+                <li><strong>进度自动保存</strong>：学习记录保存在浏览器本地（LocalStorage），关掉网页下次继续。</li>
+                <li><strong>即时音效反馈</strong>：按键正确、过关都有音效，可自由开关；另有背景音乐开关。</li>
+                <li><strong>字号三档可调</strong>：正常 / 大 / 超大，照顾不同年龄段和视力情况。</li>
+                <li><strong>卡通风格界面</strong>：色彩鲜明、按钮大，适合孩子独立操作。</li>
+            </ul>
+        </article>
+
+        <article class="seo-card" id="levels">
+            <h2>五个关卡详细说明</h2>
+            <ol class="seo-level-list">
+                <li><strong>Level 1 认识键盘</strong>：了解 26 个字母在键盘上的位置，建立键盘方位感。</li>
+                <li><strong>Level 2 字母练习</strong>：从元音字母开始，逐步熟悉全部字母的输入。</li>
+                <li><strong>Level 3 单词练习</strong>：练习简单英文单词，配 Emoji 图片提示。</li>
+                <li><strong>Level 4 句子练习</strong>：输入完整句子，练习空格、标点与连贯输入。</li>
+                <li><strong>Level 5 游戏模式</strong>：打字泡泡游戏，在 60 秒内消除更多泡泡，提升打字速度。</li>
+            </ol>
+        </article>
+
+        <article class="seo-card" id="howto">
+            <h2>怎么开始玩？</h2>
+            <ol class="seo-steps">
+                <li><strong>打开页面</strong>：直接用浏览器访问本页面，或下载仓库后双击 <code>index.html</code>，无需安装。</li>
+                <li><strong>点击「开始游戏」</strong>：进入关卡选择界面，建议按 Level 1 到 Level 5 的顺序练习。</li>
+                <li><strong>按屏幕提示打字</strong>：虚拟键盘上亮起的按键就是下一个要敲的键，照着输入即可。</li>
+                <li><strong>查看进度与星星</strong>：回到主界面点「我的进度」查看通关情况；在「设置」里调整音效、背景音乐和字号。</li>
+            </ol>
+            <p>快捷键说明：本游戏为鼠标 / 触屏操作为主，关卡内置「返回」按钮随时退出。</p>
+        </article>
+
+        <article class="seo-card" id="faq">
+            <h2>常见问题 FAQ</h2>
+
+            <details open>
+                <summary>打字游戏适合多大的孩子？</summary>
+                <p>主要面向 8–12 岁、刚开始接触键盘的孩子设计；成年人想练熟键盘布局同样可以使用。</p>
+            </details>
+            <details>
+                <summary>需要下载安装或注册账号吗？</summary>
+                <p>都不需要。这是一个纯网页游戏，用浏览器打开网页即可开玩，无需安装软件、无需注册登录。</p>
+            </details>
+            <details>
+                <summary>完全免费吗？会不会有内购？</summary>
+                <p>完全免费，采用 MIT 开源协议托管在 GitHub，没有广告、没有内购、没有任何付费内容。</p>
+            </details>
+            <details>
+                <summary>孩子的练习进度会保存吗？会不会丢失？</summary>
+                <p>会保存。进度、星星和设置都保存在浏览器本地存储（LocalStorage）中，关闭网页后重新打开仍然存在。清理浏览器数据会导致进度清空。</p>
+            </details>
+            <details>
+                <summary>会不会收集孩子的个人信息？</summary>
+                <p>不会。游戏没有后端服务器，也没有任何统计脚本、Cookie 或 SDK，键入的内容和成绩都不会上传。</p>
+            </details>
+            <details>
+                <summary>支持手机或平板玩吗？</summary>
+                <p>页面是响应式布局，平板可以正常使用。手机上因为没有实体键盘，体验会打折扣，建议在电脑或外接键盘的平板上练习。</p>
+            </details>
+            <details>
+                <summary>打字音效和背景音乐能关掉吗？</summary>
+                <p>可以。在「设置」里分别提供了音效开关和背景音乐开关；字号也提供正常 / 大 / 超大三档。</p>
+            </details>
+            <details>
+                <summary>想自己加单词或改代码可以吗？</summary>
+                <p>可以。代码开源在 GitHub（MIT 协议），词库与关卡都写在 <code>js/game.js</code> 里，直接修改即可，也欢迎提交 PR。</p>
+            </details>
+            <details>
+                <summary>能把游戏放到自己的网站或班级群里吗？</summary>
+                <p>可以。整个游戏就是静态文件，下载仓库后上传到任意静态托管（含学校内网服务器）即可使用，MIT 协议允许自由使用与分发。</p>
+            </details>
+        </article>
+
+        <article class="seo-card" id="privacy">
+            <h2>隐私说明</h2>
+            <p>本页面为纯静态网页：<strong>无后端接口、无统计脚本、无第三方 CDN、无 Cookie 追踪</strong>。唯一的本地存储是保存在浏览器 LocalStorage 中的关卡进度、星星数量与音效/字号偏好，这些数据只存在于孩子自己的设备上，不会上传，也不会被用于任何分析。</p>
+        </article>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <nav aria-label="页脚导航">
+            <a href="#features">功能特点</a>
+            <a href="#levels">关卡说明</a>
+            <a href="#howto">怎么开始玩</a>
+            <a href="#faq">常见问题</a>
+            <a href="#privacy">隐私说明</a>
+        </nav>
+        <p class="footer-note">
+            打字游戏 · Typing Game —— 免费开源的儿童打字练习工具 ·
+            <a href="https://github.com/woxiaofa/typing-game" rel="noopener" target="_blank">GitHub 仓库</a> ·
+            <a href="https://github.com/woxiaofa/typing-game/blob/main/LICENSE" rel="noopener" target="_blank">MIT License</a>
+        </p>
+    </footer>
+
     <script src="js/storage.js"></script>
     <script src="js/game.js"></script>
     <script src="js/main.js"></script>
+<!-- ==================== 结构化数据：SEO + GEO（搜索引擎与 AI 摘要的引用源） ==================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://woxiaofa.github.io/typing-game/#website",
+      "url": "https://woxiaofa.github.io/typing-game/",
+      "name": "打字游戏",
+      "alternateName": ["儿童打字游戏", "在线打字练习", "Typing Game for Kids"],
+      "description": "专为 10 岁左右孩子设计的免费在线打字学习游戏，五个关卡循序渐进，纯前端零依赖。",
+      "inLanguage": "zh-CN",
+      "license": "https://github.com/woxiaofa/typing-game/blob/main/LICENSE",
+      "publisher": { "@id": "https://woxiaofa.github.io/typing-game/#app" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://woxiaofa.github.io/typing-game/#webpage",
+      "url": "https://woxiaofa.github.io/typing-game/",
+      "name": "打字游戏 · 儿童免费在线打字练习（5 关卡循序渐进）",
+      "isPartOf": { "@id": "https://woxiaofa.github.io/typing-game/#website" },
+      "description": "专为 10 岁左右孩子设计的免费在线打字游戏：五个关卡循序渐进，虚拟键盘高亮提示，星星奖励，进度自动保存。纯浏览器本地运行。",
+      "primaryImageOfPage": "https://woxiaofa.github.io/typing-game/og-image.png",
+      "breadcrumb": { "@id": "https://woxiaofa.github.io/typing-game/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://woxiaofa.github.io/typing-game/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://woxiaofa.github.io/typing-game/" }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://woxiaofa.github.io/typing-game/#app",
+      "name": "打字游戏",
+      "alternateName": "Typing Game",
+      "url": "https://woxiaofa.github.io/typing-game/",
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "EducationalApplication",
+      "operatingSystem": "Any (Web Browser)",
+      "browserRequirements": "需要现代浏览器，支持 HTML5 与 JavaScript",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+      "featureList": [
+        "五个关卡循序渐进：认识键盘、字母练习、单词练习、句子练习、打字泡泡游戏模式",
+        "虚拟键盘高亮提示",
+        "星星奖励系统",
+        "LocalStorage 自动保存学习进度",
+        "音效与背景音乐开关",
+        "字号三档可调（正常 / 大 / 超大）",
+        "响应式界面，支持电脑与平板"
+      ],
+      "audience": { "@type": "Audience", "audienceType": "8-12 岁儿童及打字初学者" },
+      "inLanguage": "zh-CN",
+      "codeRepository": "https://github.com/woxiaofa/typing-game",
+      "license": "https://opensource.org/licenses/MIT",
+      "isPartOf": { "@id": "https://woxiaofa.github.io/typing-game/#website" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://woxiaofa.github.io/typing-game/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "打字游戏适合多大的孩子？",
+          "acceptedAnswer": { "@type": "Answer", "text": "主要面向 8–12 岁、刚开始接触键盘的孩子设计；成年人想练熟键盘布局同样可以使用。" }
+        },
+        {
+          "@type": "Question",
+          "name": "需要下载安装或注册账号吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "都不需要。这是一个纯网页游戏，用浏览器打开网页即可开玩，无需安装软件、无需注册登录。" }
+        },
+        {
+          "@type": "Question",
+          "name": "完全免费吗？会不会有内购？",
+          "acceptedAnswer": { "@type": "Answer", "text": "完全免费，采用 MIT 开源协议托管在 GitHub，没有广告、没有内购、没有任何付费内容。" }
+        },
+        {
+          "@type": "Question",
+          "name": "孩子的练习进度会保存吗？会不会丢失？",
+          "acceptedAnswer": { "@type": "Answer", "text": "会保存。进度、星星和设置都保存在浏览器本地存储（LocalStorage）中，关闭网页后重新打开仍然存在。清理浏览器数据会导致进度清空。" }
+        },
+        {
+          "@type": "Question",
+          "name": "会不会收集孩子的个人信息？",
+          "acceptedAnswer": { "@type": "Answer", "text": "不会。游戏没有后端服务器，也没有任何统计脚本、Cookie 或 SDK，键入的内容和成绩都不会上传。" }
+        },
+        {
+          "@type": "Question",
+          "name": "支持手机或平板玩吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "页面是响应式布局，平板可以正常使用。手机上因为没有实体键盘，体验会打折扣，建议在电脑或外接键盘的平板上练习。" }
+        },
+        {
+          "@type": "Question",
+          "name": "打字音效和背景音乐能关掉吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可以。在「设置」里分别提供了音效开关和背景音乐开关；字号也提供正常 / 大 / 超大三档。" }
+        },
+        {
+          "@type": "Question",
+          "name": "能把游戏放到自己的网站或班级群里吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可以。整个游戏就是静态文件，下载仓库后上传到任意静态托管（含学校内网服务器）即可使用，MIT 协议允许自由使用与分发。" }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://woxiaofa.github.io/typing-game/#howto",
+      "name": "如何开始玩打字游戏",
+      "description": "用浏览器打开页面，选择合适的关卡，按虚拟键盘的高亮提示依次输入，即可开始打字练习。",
+      "totalTime": "PT1M",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "打开页面", "text": "直接用浏览器访问页面，或下载仓库后双击 index.html，无需安装。", "url": "https://woxiaofa.github.io/typing-game/#howto" },
+        { "@type": "HowToStep", "position": 2, "name": "点击「开始游戏」", "text": "进入关卡选择界面，建议按 Level 1 到 Level 5 的顺序练习。", "url": "https://woxiaofa.github.io/typing-game/#levels" },
+        { "@type": "HowToStep", "position": 3, "name": "按提示打字", "text": "虚拟键盘上亮起的按键就是下一个要敲的键，照着输入即可。", "url": "https://woxiaofa.github.io/typing-game/#features" },
+        { "@type": "HowToStep", "position": 4, "name": "查看进度", "text": "回到主界面点「我的进度」查看通关与星星情况，在「设置」里调整音效、音乐和字号。", "url": "https://woxiaofa.github.io/typing-game/#faq" }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://woxiaofa.github.io/typing-game/#levels",
+      "name": "打字游戏五个关卡",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Level 1 认识键盘", "url": "https://woxiaofa.github.io/typing-game/#levels" },
+        { "@type": "ListItem", "position": 2, "name": "Level 2 字母练习", "url": "https://woxiaofa.github.io/typing-game/#levels" },
+        { "@type": "ListItem", "position": 3, "name": "Level 3 单词练习", "url": "https://woxiaofa.github.io/typing-game/#levels" },
+        { "@type": "ListItem", "position": 4, "name": "Level 4 句子练习", "url": "https://woxiaofa.github.io/typing-game/#levels" },
+        { "@type": "ListItem", "position": 5, "name": "Level 5 游戏模式", "url": "https://woxiaofa.github.io/typing-game/#levels" }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+    // 注册 Service Worker（离线可用）；file:// 协议下自动跳过
+    if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+        window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+    }
+</script>
 </body>
 </html>
 

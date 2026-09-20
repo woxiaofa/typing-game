@@ -1155,3 +1155,167 @@ body.font-xlarge .task-text {
     font-size: 2.5em;
   }
 }
+
+
+/* ==================================================================
+   SEO 内容区与页脚（搜索引擎可见的静态说明区域，不影响上方游戏界面）
+   ================================================================== */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #fff;
+  color: #333;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  z-index: 9999;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+.seo-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px 10px;
+}
+
+.seo-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 16px;
+  padding: 24px 26px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  color: #333;
+  line-height: 1.85;
+}
+
+.seo-card h2 {
+  color: #5a4b9c;
+  font-size: 1.5em;
+  text-align: left;
+  text-shadow: none;
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ece7ff;
+}
+
+.seo-card p {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.seo-card strong {
+  color: #4b3f86;
+}
+
+.seo-meta {
+  font-size: 13px;
+  color: #6b7280;
+  background: #f6f4ff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 12px;
+}
+
+.seo-feature-list,
+.seo-level-list,
+.seo-steps {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.seo-feature-list li,
+.seo-level-list li,
+.seo-steps li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.seo-card details {
+  border-bottom: 1px solid #ece7ff;
+  padding: 10px 0;
+}
+
+.seo-card details:last-of-type {
+  border-bottom: none;
+}
+
+.seo-card summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #4b3f86;
+  font-size: 15px;
+  list-style: none;
+}
+
+.seo-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.seo-card summary::before {
+  content: "+ ";
+  color: #8b7fd4;
+}
+
+.seo-card details[open] summary::before {
+  content: "\2212 ";
+}
+
+.seo-card details p {
+  margin: 8px 0 0;
+  color: #555;
+  font-size: 14.5px;
+}
+
+.seo-card code {
+  background: #f0edff;
+  color: #6a4fc4;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 13.5px;
+}
+
+.site-footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 18px 20px 34px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13.5px;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.site-footer a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-footer a:hover {
+  opacity: 0.85;
+}
+
+.footer-note {
+  margin: 0;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .seo-card {
+    padding: 18px 16px;
+  }
+
+  .seo-card h2 {
+    font-size: 1.25em;
+  }
+}
