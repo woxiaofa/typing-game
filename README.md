@@ -113,6 +113,22 @@ typing-game/
 - [ ] 家长自定义单词 / Custom word lists for parents
 - [ ] 平板电脑适配 / Tablet support
 
+## ☕ 赞助支持 / Sponsor
+
+如果这个项目帮到了你，欢迎请作者喝杯咖啡 ☕ 每一笔支持都会用于项目的持续维护与新功能开发。
+If this project saved you some time, consider buying me a coffee ☕ Every contribution goes towards maintenance and new features.
+
+<p align="center">
+  <img src="assets/alipay-qr.jpg" alt="支付宝收款码 / Alipay QR code" width="300">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/wechat-qr.jpg" alt="微信收款码 / WeChat Pay QR code" width="300">
+</p>
+
+<p align="center"><b>支付宝 Alipay</b> &nbsp;·&nbsp; <b>微信支付 WeChat Pay</b></p>
+
+> 点个 ⭐ Star 也是很大的鼓励。
+> A ⭐ star is equally appreciated.
+
 ## 许可证 / License
 
 MIT
