@@ -107,6 +107,9 @@ const Game = {
         this.level7Index = 0;
 
         this.currentSpeech = null;
+        this._advancePending = false;
+        this._advanceDone = false;
+        this.ensureVoices();
         this.startTimer();
         this.updateStats();
         this.loadTask();
@@ -266,14 +269,12 @@ const Game = {
                 this.correctCount++;
                 this.stars += 2;
                 this.playSound('correct');
-                this.speak(item.full, 'en-US');
-
-                setTimeout(() => {
+                this.speakThenAdvance(item.full, 'en-US', () => {
                     if (this.currentLevel !== 6) return;
                     this.level6Index++;
                     this.userInput = '';
                     this.loadTask();
-                }, 1600);
+                });
             } else {
                 this.playSound('key');
                 // 高亮下一个字母
@@ -373,15 +374,13 @@ const Game = {
             this.correctCount++;
             this.stars += 2;
             this.playSound('correct');
-            this.speak(item.zh, 'zh-CN');
-            this.updateStats();
-
-            setTimeout(() => {
+            this.speakThenAdvance(item.zh, 'zh-CN', () => {
                 if (this.currentLevel !== 7) return;
                 this.level7Index++;
                 this.userInput = '';
                 this.loadTask();
-            }, 1600);
+            });
+            this.updateStats();
         }
     },
 
@@ -642,16 +641,77 @@ const Game = {
         return `${m}:${s < 10 ? '0' + s : s}`;
     },
 
-    // 语音朗读
+    // 预加载语音包（浏览器语音列表是异步的，首次可能为空）
+    ensureVoices() {
+        if (!('speechSynthesis' in window)) return;
+        if (this._voices && this._voices.length) return;
+        try {
+            this._voices = window.speechSynthesis.getVoices() || [];
+            if (!this._voices.length && !this._voicesBound) {
+                this._voicesBound = true;
+                window.speechSynthesis.onvoiceschanged = () => {
+                    this._voices = window.speechSynthesis.getVoices() || [];
+                };
+            }
+        } catch (e) { /* 忽略 */ }
+    },
+
+    // 按语言挑选可用语音
+    pickVoice(lang) {
+        const voices = this._voices || [];
+        if (!voices.length) return null;
+        const base = (lang || 'en').split('-')[0];
+        return voices.find(v => v.lang === lang) ||
+               voices.find(v => v.lang && v.lang.split('-')[0] === base) ||
+               null;
+    },
+
+    // 语音朗读（不等待结束）
     speak(text, lang) {
         try {
-            if (!('speechSynthesis' in window)) return;
+            if (!('speechSynthesis' in window)) return false;
+            this.ensureVoices();
+            // 若有「读完再进下一题」的朗读正在进行，不打断它
+            if (!this._advancePending) window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = lang || 'en-US';
+            u.rate = 0.9;
+            const v = this.pickVoice(lang || 'en-US');
+            if (v) u.voice = v;
+            window.speechSynthesis.speak(u);
+            return true;
+        } catch (e) { return false; }
+    },
+
+    // 朗读完整后再执行回调（用于答对后「读完再进下一题」）
+    // 若环境不支持语音 / onend 不触发，兜底超时后回调仍会执行，不会卡住
+    speakThenAdvance(text, lang, advance) {
+        const done = () => {
+            if (this._advanceDone) return;
+            this._advanceDone = true;
+            this._advancePending = false;
+            clearTimeout(this._advanceTimer);
+            try { advance(); } catch (e) { /* 忽略 */ }
+        };
+        try {
+            if (!('speechSynthesis' in window)) { done(); return; }
+            this.ensureVoices();
             window.speechSynthesis.cancel();
             const u = new SpeechSynthesisUtterance(text);
             u.lang = lang || 'en-US';
             u.rate = 0.9;
+            const v = this.pickVoice(lang || 'en-US');
+            if (v) u.voice = v;
+            this._advanceDone = false;
+            this._advancePending = true;
+            u.onend = done;
+            u.onerror = done;
+            // 兜底：语音不可用 / onend 始终不触发时，仍继续下一题
+            this._advanceTimer = setTimeout(done, 3000);
             window.speechSynthesis.speak(u);
-        } catch (e) { /* 忽略不支持的环境 */ }
+        } catch (e) {
+            done();
+        }
     },
 
     // 朗读当前题目
