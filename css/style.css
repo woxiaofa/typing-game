@@ -152,6 +152,17 @@ h2 {
   min-width: 250px;
 }
 
+/* 按钮下方英文副标题 */
+.btn .en {
+  display: block;
+  font-size: 0.5em;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 @media (max-width: 1024px) {
   .btn {
     padding: 16px 32px;
@@ -356,6 +367,15 @@ h2 {
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
+}
+
+/* 关卡卡片下方英文副标题 */
+.level-en {
+  font-size: 0.85rem;
+  color: #5a6b7b;
+  font-weight: 500;
+  margin-top: -4px;
+  margin-bottom: 8px;
 }
 
 @media (max-width: 1024px) {

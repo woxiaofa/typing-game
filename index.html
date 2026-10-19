@@ -55,9 +55,9 @@
             <p class="subtitle">让我们一起学习打字吧！</p>
             
             <div class="menu-buttons">
-                <button class="btn btn-primary" onclick="showLevelSelect()">开始游戏</button>
-                <button class="btn btn-secondary" onclick="showProgress()">我的进度</button>
-                <button class="btn btn-secondary" onclick="showSettings()">设置</button>
+                <button class="btn btn-primary" onclick="showLevelSelect()">开始游戏<span class="en">Start Game</span></button>
+                <button class="btn btn-secondary" onclick="showProgress()">我的进度<span class="en">My Progress</span></button>
+                <button class="btn btn-secondary" onclick="showSettings()">设置<span class="en">Settings</span></button>
             </div>
             
             <div class="progress-summary">
@@ -81,36 +81,43 @@
                 <div class="level-card" onclick="startLevel(1)">
                     <div class="level-icon">⌨️</div>
                     <div class="level-title">Level 1: 认识键盘</div>
+                    <div class="level-en">Learn the Keyboard</div>
                     <div class="level-stars" id="level1-stars"></div>
                 </div>
                 <div class="level-card" onclick="startLevel(2)">
                     <div class="level-icon">🔤</div>
                     <div class="level-title">Level 2: 字母练习</div>
+                    <div class="level-en">Letter Practice</div>
                     <div class="level-stars" id="level2-stars"></div>
                 </div>
                 <div class="level-card" onclick="startLevel(3)">
                     <div class="level-icon">📝</div>
                     <div class="level-title">Level 3: 单词练习</div>
+                    <div class="level-en">Word Practice</div>
                     <div class="level-stars" id="level3-stars"></div>
                 </div>
                 <div class="level-card" onclick="startLevel(4)">
                     <div class="level-icon">📄</div>
                     <div class="level-title">Level 4: 句子练习</div>
+                    <div class="level-en">Sentence Practice</div>
                     <div class="level-stars" id="level4-stars"></div>
                 </div>
                 <div class="level-card" onclick="startLevel(5)">
                     <div class="level-icon">🎯</div>
                     <div class="level-title">Level 5: 游戏模式</div>
+                    <div class="level-en">Game Mode</div>
                     <div class="level-stars" id="level5-stars"></div>
                 </div>
                 <div class="level-card" onclick="startLevel(6)">
                     <div class="level-icon">🖼️</div>
                     <div class="level-title">Level 6: 英语情景填句</div>
+                    <div class="level-en">English Fill-in</div>
                     <div class="level-stars" id="level6-stars"></div>
                 </div>
                 <div class="level-card" onclick="startLevel(7)">
                     <div class="level-icon">🀄</div>
                     <div class="level-title">Level 7: 中文拼音</div>
+                    <div class="level-en">Chinese Pinyin</div>
                     <div class="level-stars" id="level7-stars"></div>
                 </div>
             </div>
@@ -347,9 +354,9 @@
             <div class="result-stars" id="result-stars"></div>
             <div class="result-stats" id="result-stats"></div>
             <div class="result-actions">
-                <button class="btn btn-primary" onclick="shareResult()">📤 分享成绩</button>
-                <button class="btn btn-secondary" onclick="replayLevel()">🔁 再玩一次</button>
-                <button class="btn btn-back" onclick="exitGame()">返回主菜单</button>
+                <button class="btn btn-primary" onclick="shareResult()">📤 分享成绩<span class="en">Share</span></button>
+                <button class="btn btn-secondary" onclick="replayLevel()">🔁 再玩一次<span class="en">Replay</span></button>
+                <button class="btn btn-back" onclick="exitGame()">返回主菜单<span class="en">Main Menu</span></button>
             </div>
             <div id="share-toast" class="share-toast"></div>
         </div>
