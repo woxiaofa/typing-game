@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ============ SEO 基础 ============ -->
-    <title>打字游戏 · 儿童免费在线打字练习（5 关卡循序渐进）| Typing Game for Kids</title>
-    <meta name="description" content="专为 10 岁左右孩子设计的免费在线打字游戏：认识键盘、字母练习、单词练习、句子练习、打字泡泡五个关卡循序渐进。虚拟键盘高亮提示、星星奖励、进度自动保存、音效与字号可调。原生 HTML/CSS/JS 零依赖，浏览器打开即玩，无需安装与注册。">
-    <meta name="keywords" content="打字游戏,打字练习,在线打字练习,儿童打字,少儿打字练习,键盘练习,指法练习,打字速度测试,免费打字软件,typing game,typing practice,typing tutor,typing test,kids typing">
+    <title>打字游戏 · 儿童免费在线打字练习（7 关卡循序渐进）| Typing Game for Kids</title>
+    <meta name="description" content="专为 10 岁左右孩子设计的免费在线打字游戏：认识键盘、字母练习、单词练习、句子练习、打字泡泡、英语情景填句、中文拼音七个关卡循序渐进。虚拟键盘高亮提示、星星奖励、进度自动保存、音效与字号可调。原生 HTML/CSS/JS 零依赖，浏览器打开即玩，无需安装与注册。">
+    <meta name="keywords" content="打字游戏,打字练习,在线打字练习,儿童打字,少儿打字练习,键盘练习,指法练习,打字速度测试,免费打字软件,英语填句,中文拼音,typing game,typing practice,typing tutor,typing test,kids typing">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="woxiaofa">
     <meta name="theme-color" content="#667eea">
@@ -15,8 +15,8 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="打字游戏">
     <meta property="og:locale" content="zh_CN">
-    <meta property="og:title" content="打字游戏 · 儿童免费在线打字练习（5 关卡循序渐进）">
-    <meta property="og:description" content="认识键盘 → 字母 → 单词 → 句子 → 打字泡泡，五个关卡循序渐进；虚拟键盘高亮提示、星星奖励、进度自动保存。纯前端零依赖，浏览器打开即玩。">
+    <meta property="og:title" content="打字游戏 · 儿童免费在线打字练习（7 关卡循序渐进）">
+    <meta property="og:description" content="认识键盘 → 字母 → 单词 → 句子 → 打字泡泡 → 英语填句 → 中文拼音，七个关卡循序渐进；虚拟键盘高亮提示、星星奖励、进度自动保存。纯前端零依赖，浏览器打开即玩。">
     <meta property="og:url" content="https://woxiaofa.github.io/typing-game/">
     <meta property="og:image" content="https://woxiaofa.github.io/typing-game/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -27,7 +27,7 @@
     <meta name="twitter:description" content="五个关卡循序渐进的儿童打字游戏，纯前端零依赖，浏览器打开即玩。">
     <meta name="twitter:image" content="https://woxiaofa.github.io/typing-game/og-image.png">
     <meta name="twitter:image:alt" content="打字游戏 - 儿童在线打字练习">
-    <meta name="ai:summary" content="免费在线儿童打字学习游戏：5 个关卡（认识键盘、字母、单词、句子、打字泡泡游戏），虚拟键盘高亮提示，星星奖励，LocalStorage 保存进度。原生 HTML/CSS/JS 单页应用，零依赖、无后端，浏览器打开即玩。">
+    <meta name="ai:summary" content="免费在线儿童打字学习游戏：7 个关卡（认识键盘、字母、单词、句子、打字泡泡游戏、英语情景填句、中文拼音），虚拟键盘高亮提示，星星奖励，LocalStorage 保存进度。原生 HTML/CSS/JS 单页应用，零依赖、无后端，浏览器打开即玩。">
     <link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -103,6 +103,16 @@
                     <div class="level-title">Level 5: 游戏模式</div>
                     <div class="level-stars" id="level5-stars"></div>
                 </div>
+                <div class="level-card" onclick="startLevel(6)">
+                    <div class="level-icon">🖼️</div>
+                    <div class="level-title">Level 6: 英语情景填句</div>
+                    <div class="level-stars" id="level6-stars"></div>
+                </div>
+                <div class="level-card" onclick="startLevel(7)">
+                    <div class="level-icon">🀄</div>
+                    <div class="level-title">Level 7: 中文拼音</div>
+                    <div class="level-stars" id="level7-stars"></div>
+                </div>
             </div>
             <button class="btn btn-back" onclick="showMainMenu()">返回</button>
         </div>
@@ -117,7 +127,9 @@
                     <span class="stat">⭐ <span id="current-stars">0</span></span>
                     <span class="stat">✓ <span id="correct-count">0</span></span>
                     <span class="stat">✗ <span id="wrong-count">0</span></span>
+                    <span class="stat">⏱ <span id="elapsed-time">0:00</span></span>
                 </div>
+                <button class="btn btn-small" id="listen-btn" style="display:none;" onclick="Game.speakCurrent()">🔊 听</button>
             </div>
 
             <!-- Level 1-4 通用界面 -->
@@ -137,6 +149,17 @@
                 </div>
 
                 <div class="feedback-area" id="feedback-area"></div>
+
+                <!-- Level 7 中文拼音输入区 -->
+                <div id="chinese-area" class="chinese-area" style="display:none;">
+                    <div class="chinese-prompt" id="chinese-prompt"></div>
+                    <div class="chinese-pinyin" id="chinese-pinyin"></div>
+                    <input type="text" id="chinese-input" class="chinese-input" autocomplete="off"
+                           autocorrect="off" autocapitalize="off" spellcheck="false"
+                           placeholder="用拼音打字，或从下方选字" />
+                    <div class="chinese-chars" id="chinese-chars"></div>
+                    <button class="btn btn-small btn-char-back" onclick="Game.chineseBackspace()">⌫ 删除</button>
+                </div>
             </div>
 
             <!-- Level 5 游戏模式界面 -->
@@ -199,7 +222,7 @@
         <article class="seo-card" id="features">
             <h2>功能特点</h2>
             <ul class="seo-feature-list">
-                <li><strong>五个关卡循序渐进</strong>：Level 1 认识键盘 → Level 2 字母练习 → Level 3 单词练习 → Level 4 句子练习 → Level 5 游戏模式，难度逐步提升。</li>
+                <li><strong>七关循序渐进</strong>：认识键盘 → 字母 → 单词 → 句子 → 打字泡泡 → 英语情景填句 → 中文拼音，难度逐步提升。</li>
                 <li><strong>虚拟键盘高亮提示</strong>：屏幕上显示可视化键盘，按键亮起告诉孩子该按哪个键，不用大人陪在旁边教。</li>
                 <li><strong>单词配 Emoji 图片提示</strong>：Level 3 用小图标辅助理解单词含义，边玩边认字。</li>
                 <li><strong>星星奖励系统</strong>：每完成一个关卡获得星星，给孩子持续的正反馈。</li>
@@ -218,6 +241,8 @@
                 <li><strong>Level 3 单词练习</strong>：练习简单英文单词，配 Emoji 图片提示。</li>
                 <li><strong>Level 4 句子练习</strong>：输入完整句子，练习空格、标点与连贯输入。</li>
                 <li><strong>Level 5 游戏模式</strong>：打字泡泡游戏，在 60 秒内消除更多泡泡，提升打字速度。</li>
+                <li><strong>Level 6 英语情景填句</strong>：看图、补上句子里缺失的单词，答对后听语音读一遍整句，循序渐进。</li>
+                <li><strong>Level 7 中文拼音</strong>：根据英文意思与拼音提示输入中文，从单字晋级到「你好」「你在哪里？」等简单常用句。</li>
             </ol>
         </article>
 
@@ -294,6 +319,21 @@
         </p>
     </footer>
 
+    <!-- 成绩弹窗（计时 + 分享） -->
+    <div id="result-screen" class="result-overlay" style="display:none;">
+        <div class="result-card">
+            <h2 id="result-title">🎉 通关啦！</h2>
+            <div class="result-stars" id="result-stars"></div>
+            <div class="result-stats" id="result-stats"></div>
+            <div class="result-actions">
+                <button class="btn btn-primary" onclick="shareResult()">📤 分享成绩</button>
+                <button class="btn btn-secondary" onclick="replayLevel()">🔁 再玩一次</button>
+                <button class="btn btn-back" onclick="exitGame()">返回主菜单</button>
+            </div>
+            <div id="share-toast" class="share-toast"></div>
+        </div>
+    </div>
+
     <script src="js/storage.js"></script>
     <script src="js/game.js"></script>
     <script src="js/main.js"></script>
@@ -308,7 +348,7 @@
       "url": "https://woxiaofa.github.io/typing-game/",
       "name": "打字游戏",
       "alternateName": ["儿童打字游戏", "在线打字练习", "Typing Game for Kids"],
-      "description": "专为 10 岁左右孩子设计的免费在线打字学习游戏，五个关卡循序渐进，纯前端零依赖。",
+      "description": "专为 10 岁左右孩子设计的免费在线打字学习游戏，七个关卡循序渐进，纯前端零依赖。",
       "inLanguage": "zh-CN",
       "license": "https://github.com/woxiaofa/typing-game/blob/main/LICENSE",
       "publisher": { "@id": "https://woxiaofa.github.io/typing-game/#app" }
@@ -319,7 +359,7 @@
       "url": "https://woxiaofa.github.io/typing-game/",
       "name": "打字游戏 · 儿童免费在线打字练习（5 关卡循序渐进）",
       "isPartOf": { "@id": "https://woxiaofa.github.io/typing-game/#website" },
-      "description": "专为 10 岁左右孩子设计的免费在线打字游戏：五个关卡循序渐进，虚拟键盘高亮提示，星星奖励，进度自动保存。纯浏览器本地运行。",
+      "description": "专为 10 岁左右孩子设计的免费在线打字游戏：七个关卡循序渐进，虚拟键盘高亮提示，星星奖励，进度自动保存。纯浏览器本地运行。",
       "primaryImageOfPage": "https://woxiaofa.github.io/typing-game/og-image.png",
       "breadcrumb": { "@id": "https://woxiaofa.github.io/typing-game/#breadcrumb" }
     },
@@ -343,7 +383,7 @@
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
       "featureList": [
-        "五个关卡循序渐进：认识键盘、字母练习、单词练习、句子练习、打字泡泡游戏模式",
+        "七关循序渐进：认识键盘、字母练习、单词练习、句子练习、打字泡泡游戏、英语情景填句、中文拼音练习",
         "虚拟键盘高亮提示",
         "星星奖励系统",
         "LocalStorage 自动保存学习进度",
@@ -425,7 +465,9 @@
         { "@type": "ListItem", "position": 2, "name": "Level 2 字母练习", "url": "https://woxiaofa.github.io/typing-game/#levels" },
         { "@type": "ListItem", "position": 3, "name": "Level 3 单词练习", "url": "https://woxiaofa.github.io/typing-game/#levels" },
         { "@type": "ListItem", "position": 4, "name": "Level 4 句子练习", "url": "https://woxiaofa.github.io/typing-game/#levels" },
-        { "@type": "ListItem", "position": 5, "name": "Level 5 游戏模式", "url": "https://woxiaofa.github.io/typing-game/#levels" }
+        { "@type": "ListItem", "position": 5, "name": "Level 5 游戏模式", "url": "https://woxiaofa.github.io/typing-game/#levels" },
+        { "@type": "ListItem", "position": 6, "name": "Level 6 英语情景填句", "url": "https://woxiaofa.github.io/typing-game/#levels" },
+        { "@type": "ListItem", "position": 7, "name": "Level 7 中文拼音练习", "url": "https://woxiaofa.github.io/typing-game/#levels" }
       ]
     }
   ]

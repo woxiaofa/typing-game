@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProgress();
     loadSettings();
     setupKeyboardListener();
+    const ci = document.getElementById('chinese-input');
+    if (ci) ci.addEventListener('input', () => Game.handleChineseInput());
 });
 
 // 初始化虚拟键盘
@@ -62,6 +64,10 @@ function handleVirtualKeyClick(key) {
 // 设置键盘监听
 function setupKeyboardListener() {
     document.addEventListener('keydown', (e) => {
+        // 中文输入法组合输入中不拦截，避免打断拼音候选
+        if (e.isComposing || e.keyCode === 229) return;
+        // 中文拼音关使用独立输入框，交给其自身处理
+        if (e.target && e.target.id === 'chinese-input') return;
         if (currentScreen === 'game-screen') {
             // 处理空格键
             if (e.key === ' ') {
@@ -134,15 +140,35 @@ function switchScreen(screenId) {
 // 开始关卡
 function startLevel(level) {
     switchScreen('game-screen');
-    Game.init(level);
-    
-    // 如果是游戏模式，显示游戏区域
+    // 复位成绩弹窗与听按钮
+    document.getElementById('result-screen').style.display = 'none';
+    Game.showListenButton(false);
+
+    const practice = document.getElementById('practice-area');
+    const gameArea = document.getElementById('game-area');
+    const vkbContainer = document.querySelector('.virtual-keyboard-container');
+    const chineseArea = document.getElementById('chinese-area');
+
     if (level === 5) {
-        document.getElementById('practice-area').style.display = 'none';
-        document.getElementById('game-area').style.display = 'block';
+        practice.style.display = 'none';
+        gameArea.style.display = 'block';
     } else {
-        document.getElementById('practice-area').style.display = 'block';
-        document.getElementById('game-area').style.display = 'none';
+        practice.style.display = 'block';
+        gameArea.style.display = 'none';
+        if (level === 7) {
+            vkbContainer.style.display = 'none';
+            chineseArea.style.display = 'block';
+        } else {
+            vkbContainer.style.display = '';
+            chineseArea.style.display = 'none';
+        }
+    }
+
+    Game.init(level);
+
+    if (level === 7) {
+        const ci = document.getElementById('chinese-input');
+        if (ci) setTimeout(() => ci.focus(), 60);
     }
 }
 
@@ -152,6 +178,9 @@ function exitGame() {
     if (Game.bubbleGame) {
         Game.cleanupBubbleGame();
     }
+    Game.stopTimer();
+    Game.showListenButton(false);
+    document.getElementById('result-screen').style.display = 'none';
     showMainMenu();
 }
 
@@ -167,7 +196,7 @@ function loadProgress() {
 // 更新关卡星星显示
 function updateLevelStars() {
     const progress = Storage.getProgress();
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 7; i++) {
         const stars = progress.levels[i].stars || 0;
         const starEl = document.getElementById(`level${i}-stars`);
         if (starEl) {
@@ -183,7 +212,7 @@ function displayProgress() {
     
     detailsEl.innerHTML = '';
     
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 7; i++) {
         const level = progress.levels[i];
         const item = document.createElement('div');
         item.className = 'progress-item';
@@ -242,5 +271,53 @@ function changeFontSize(size) {
     Storage.saveSettings(settings);
     
     document.body.className = `font-${size}`;
+}
+
+// 显示成绩弹窗（功能 1：计时 + 分享）
+function showResult(level, stars, elapsedMs, correct, wrong) {
+    const overlay = document.getElementById('result-screen');
+    const titleEl = document.getElementById('result-title');
+    document.getElementById('result-stars').textContent = '⭐'.repeat(stars) || '☆';
+
+    const total = Math.floor(elapsedMs / 1000);
+    const m = Math.floor(total / 60);
+    const s = total % 60;
+    const timeStr = m + ':' + (s < 10 ? '0' + s : s);
+
+    titleEl.textContent = level === 5 ? '🎮 游戏结束！' : '🎉 通关啦！';
+    document.getElementById('result-stats').innerHTML =
+        `本关：Level ${level}<br>` +
+        `⏱ 用时：<span class="time-big">${timeStr}</span><br>` +
+        `✅ 正确 ${correct} 次　❌ 错误 ${wrong} 次<br>` +
+        `⭐ 获得 ${stars} 星`;
+
+    document.getElementById('share-toast').textContent = '';
+    overlay.style.display = 'flex';
+}
+
+// 分享成绩（Web Share API，不支持时复制到剪贴板）
+function shareResult() {
+    const title = '打字游戏 · 我的成绩';
+    const statsText = document.getElementById('result-stats').innerText.replace(/\n/g, '，');
+    const text = `🎮 我在「打字游戏」${statsText}！快来一起玩：https://woxiaofa.github.io/typing-game/`;
+    const toast = document.getElementById('share-toast');
+
+    if (navigator.share) {
+        navigator.share({ title, text }).catch(() => {});
+        return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+            .then(() => { toast.textContent = '已复制成绩，去粘贴分享吧！'; })
+            .catch(() => { toast.textContent = '复制失败，请截图分享～'; });
+    } else {
+        toast.textContent = '当前环境不支持分享，请截图分享～';
+    }
+}
+
+// 再玩一次当前关
+function replayLevel() {
+    document.getElementById('result-screen').style.display = 'none';
+    startLevel(Game.currentLevel);
 }
 

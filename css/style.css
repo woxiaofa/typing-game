@@ -1156,6 +1156,216 @@ body.font-xlarge .task-text {
   }
 }
 
+/* 计时显示 */
+.stat .timer {
+  font-variant-numeric: tabular-nums;
+  color: #e83e8c;
+}
+
+#listen-btn {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: #fff;
+}
+
+/* 英语情景填句（Level 6）：缺词句子 */
+.task-sentence {
+  font-size: 2.6em;
+  font-weight: bold;
+  color: #444;
+  margin: 10px 0 6px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+@media (max-width: 1024px) {
+  .task-sentence {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .task-sentence {
+    font-size: 1.5em;
+  }
+}
+
+.blank {
+  display: inline-block;
+  min-width: 2.4em;
+  border-bottom: 4px solid #667eea;
+  color: #667eea;
+  padding: 0 6px;
+  margin: 0 4px;
+}
+
+.blank.filled {
+  border-bottom-color: #28a745;
+  color: #28a745;
+}
+
+/* 中文拼音输入区（Level 7） */
+.chinese-area {
+  text-align: center;
+  margin: 10px 0 20px;
+}
+
+.chinese-prompt {
+  font-size: 2.4em;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.chinese-pinyin {
+  font-size: 1.6em;
+  color: #667eea;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+  .chinese-prompt {
+    font-size: 1.7em;
+  }
+  .chinese-pinyin {
+    font-size: 1.2em;
+  }
+}
+
+.chinese-input {
+  width: 90%;
+  max-width: 560px;
+  font-size: 2em;
+  padding: 14px 18px;
+  border: 3px solid #dee2e6;
+  border-radius: 14px;
+  text-align: center;
+  color: #2b2b2b;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chinese-input:focus {
+  border-color: #667eea;
+}
+
+.chinese-chars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 22px 0 14px;
+}
+
+.char-btn {
+  min-width: 64px;
+  height: 64px;
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+  background: #fff;
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s;
+}
+
+.char-btn:hover {
+  background: #f1f3ff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.char-btn:active {
+  transform: scale(0.95);
+}
+
+.char-btn.used {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.btn-char-back {
+  background: #6c757d;
+  color: #fff;
+  margin-top: 8px;
+}
+
+/* 成绩弹窗 */
+.result-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(40, 30, 80, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.result-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 40px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  animation: popIn 0.35s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.result-card h2 {
+  color: #5a4b9c;
+  margin-bottom: 16px;
+  text-shadow: none;
+}
+
+.result-stars {
+  font-size: 2.8em;
+  margin-bottom: 18px;
+  letter-spacing: 6px;
+}
+
+.result-stats {
+  font-size: 1.25em;
+  color: #444;
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+.result-stats .time-big {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #e83e8c;
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.result-actions .btn {
+  min-width: 240px;
+  margin: 0;
+}
+
+.share-toast {
+  margin-top: 16px;
+  min-height: 22px;
+  font-size: 1em;
+  color: #28a745;
+  font-weight: bold;
+}
+
 
 /* ==================================================================
    SEO 内容区与页脚（搜索引擎可见的静态说明区域，不影响上方游戏界面）

@@ -6,6 +6,13 @@ const Game = {
     correctCount: 0,
     wrongCount: 0,
     stars: 0,
+
+    // 计时（功能 1）
+    startTime: 0,
+    timerInterval: null,
+
+    // 当前朗读内容（听按钮 / 自动朗读）
+    currentSpeech: null,
     
     // Level 1: 键盘认识
     level1Data: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
@@ -53,6 +60,36 @@ const Game = {
     ],
     level4Index: 0,
 
+    // Level 6: 英语情景填句（看图补词 + 朗读）
+    level6Data: [
+        { emoji: '🐱', prompt: 'The cat is ___',                answer: 'CUTE',   full: 'The cat is cute.' },
+        { emoji: '🐶', prompt: 'The dog is ___',                answer: 'BIG',    full: 'The dog is big.' },
+        { emoji: '☀️', prompt: 'The sun is ___',                answer: 'HOT',    full: 'The sun is hot.' },
+        { emoji: '🍎', prompt: 'I like ___',                    answer: 'APPLES', full: 'I like apples.' },
+        { emoji: '🌧️', prompt: 'It is ___',                     answer: 'RAINING',full: 'It is raining.' },
+        { emoji: '🚗', prompt: 'The car is ___',                answer: 'RED',    full: 'The car is red.' },
+        { emoji: '🐟', prompt: 'The fish can ___',              answer: 'SWIM',   full: 'The fish can swim.' },
+        { emoji: '🌳', prompt: 'The tree is ___',               answer: 'GREEN',  full: 'The tree is green.' },
+        { emoji: '⭐', prompt: 'The star is very ___',          answer: 'BRIGHT', full: 'The star is very bright.' },
+        { emoji: '📚', prompt: 'I can ___',                     answer: 'READ',   full: 'I can read.' }
+    ],
+    level6Index: 0,
+
+    // Level 7: 中文拼音（英文意思 + 拼音提示，输入中文）
+    level7Data: [
+        { emoji: '👋', zh: '你好',       py: 'nǐ hǎo',       en: 'Hello' },
+        { emoji: '🙏', zh: '谢谢',       py: 'xiè xie',      en: 'Thank you' },
+        { emoji: '🌞', zh: '早上好',     py: 'zǎo shàng hǎo', en: 'Good morning' },
+        { emoji: '👶', zh: '我',         py: 'wǒ',           en: 'I / me' },
+        { emoji: '🐱', zh: '猫',         py: 'māo',          en: 'cat' },
+        { emoji: '🏠', zh: '家',         py: 'jiā',          en: 'home' },
+        { emoji: '🍎', zh: '苹果',       py: 'píng guǒ',     en: 'apple' },
+        { emoji: '👋', zh: '再见',       py: 'zài jiàn',     en: 'Goodbye' },
+        { emoji: '❓', zh: '你在哪里？', py: 'nǐ zài nǎ lǐ', en: 'Where are you?' },
+        { emoji: '🍎', zh: '我吃苹果。', py: 'wǒ chī píng guǒ', en: 'I eat an apple.' }
+    ],
+    level7Index: 0,
+
     // 初始化游戏
     init(level) {
         this.currentLevel = level;
@@ -66,7 +103,11 @@ const Game = {
         this.level2Index = 0;
         this.level3Index = 0;
         this.level4Index = 0;
+        this.level6Index = 0;
+        this.level7Index = 0;
 
+        this.currentSpeech = null;
+        this.startTimer();
         this.updateStats();
         this.loadTask();
     },
@@ -100,6 +141,12 @@ const Game = {
                 break;
             case 5:
                 this.startBubbleGame();
+                break;
+            case 6:
+                this.loadLevel6();
+                break;
+            case 7:
+                this.loadLevel7();
                 break;
         }
     },
@@ -171,6 +218,183 @@ const Game = {
         }
     },
 
+    // Level 6: 英语情景填句
+    loadLevel6() {
+        if (this.level6Index >= this.level6Data.length) {
+            this.completeLevel();
+            return;
+        }
+
+        const item = this.level6Data[this.level6Index];
+        const taskTextEl = document.getElementById('task-text');
+        const taskImageEl = document.getElementById('task-image');
+        const inputDisplayEl = document.getElementById('input-display');
+        const inputHintEl = document.getElementById('input-hint');
+        const feedbackEl = document.getElementById('feedback-area');
+
+        feedbackEl.innerHTML = '';
+        this.userInput = '';
+        inputDisplayEl.textContent = '';
+        taskImageEl.textContent = item.emoji;
+        taskTextEl.innerHTML = item.prompt.replace('___',
+            '<span class="blank" id="fill-blank"></span>');
+
+        inputHintEl.innerHTML = `看图，填入正确的单词（<span class="highlight">${item.answer[0]}</span> 开头）`;
+        this.currentSpeech = { text: item.full, lang: 'en-US' };
+        this.showListenButton(true);
+
+        // 高亮首字母
+        this.highlightKey(item.answer[0]);
+    },
+
+    // Level 6 输入处理
+    handleLevel6Input(key) {
+        const item = this.level6Data[this.level6Index];
+        const answer = item.answer;
+        const expectedChar = answer[this.userInput.length];
+
+        if (key === expectedChar) {
+            this.userInput += key;
+            const blank = document.getElementById('fill-blank');
+            if (blank) {
+                blank.textContent = this.userInput;
+                blank.classList.add('filled');
+            }
+
+            if (this.userInput === answer) {
+                this.showFeedback(true, '太棒了！');
+                this.correctCount++;
+                this.stars += 2;
+                this.playSound('correct');
+                this.speak(item.full, 'en-US');
+
+                setTimeout(() => {
+                    if (this.currentLevel !== 6) return;
+                    this.level6Index++;
+                    this.userInput = '';
+                    this.loadTask();
+                }, 1600);
+            } else {
+                this.playSound('key');
+                // 高亮下一个字母
+                this.highlightKey(answer[this.userInput.length]);
+            }
+        } else {
+            this.showFeedback(false, '不对，再试试！');
+            this.wrongCount++;
+            this.userInput = '';
+            const blank = document.getElementById('fill-blank');
+            if (blank) {
+                blank.textContent = '';
+                blank.classList.remove('filled');
+            }
+            this.highlightKey(answer[0]);
+            this.playSound('wrong');
+        }
+        this.updateStats();
+    },
+
+    // Level 7: 中文拼音
+    loadLevel7() {
+        if (this.level7Index >= this.level7Data.length) {
+            this.completeLevel();
+            return;
+        }
+
+        const item = this.level7Data[this.level7Index];
+        const taskTextEl = document.getElementById('task-text');
+        const taskImageEl = document.getElementById('task-image');
+        const feedbackEl = document.getElementById('feedback-area');
+        const promptEl = document.getElementById('chinese-prompt');
+        const pinyinEl = document.getElementById('chinese-pinyin');
+        const inputEl = document.getElementById('chinese-input');
+        const charsEl = document.getElementById('chinese-chars');
+
+        feedbackEl.innerHTML = '';
+        taskImageEl.textContent = item.emoji;
+        taskTextEl.textContent = item.en;
+        promptEl.textContent = item.en;
+        pinyinEl.textContent = '拼音：' + item.py;
+        inputEl.value = '';
+        this.currentSpeech = { text: item.zh, lang: 'zh-CN' };
+        this.showListenButton(true);
+
+        // 生成打乱顺序的选字按钮
+        const chars = item.zh.split('');
+        const shuffled = this.shuffle(chars.slice());
+        charsEl.innerHTML = '';
+        shuffled.forEach(ch => {
+            const b = document.createElement('button');
+            b.className = 'char-btn';
+            b.textContent = ch;
+            b.onclick = () => this.appendChineseChar(ch, b);
+            charsEl.appendChild(b);
+        });
+
+        this.highlightKey('');
+    },
+
+    // Level 7: 选字按钮追加
+    appendChineseChar(ch, btn) {
+        const inputEl = document.getElementById('chinese-input');
+        inputEl.value += ch;
+        if (btn) btn.classList.add('used');
+        this.handleChineseInput();
+    },
+
+    // Level 7: 退格
+    chineseBackspace() {
+        const inputEl = document.getElementById('chinese-input');
+        inputEl.value = inputEl.value.slice(0, -1);
+        this.markUsedChars();
+    },
+
+    // 根据当前输入标记已用选字
+    markUsedChars() {
+        const inputEl = document.getElementById('chinese-input');
+        const val = inputEl.value;
+        document.querySelectorAll('#chinese-chars .char-btn').forEach(b => {
+            // 统计该字在目标与已输入中的出现次数
+            const ch = b.textContent;
+            const total = this.level7Data[this.level7Index].zh.split('').filter(c => c === ch).length;
+            const used = val.split('').filter(c => c === ch).length;
+            b.classList.toggle('used', used >= total);
+        });
+    },
+
+    // Level 7: 校验中文输入（输入框 / 选字共用）
+    handleChineseInput() {
+        if (this.currentLevel !== 7) return;
+        const inputEl = document.getElementById('chinese-input');
+        const item = this.level7Data[this.level7Index];
+        this.markUsedChars();
+
+        if (inputEl.value === item.zh) {
+            this.showFeedback(true, '太棒了！');
+            this.correctCount++;
+            this.stars += 2;
+            this.playSound('correct');
+            this.speak(item.zh, 'zh-CN');
+            this.updateStats();
+
+            setTimeout(() => {
+                if (this.currentLevel !== 7) return;
+                this.level7Index++;
+                this.userInput = '';
+                this.loadTask();
+            }, 1600);
+        }
+    },
+
+    // 数组打乱
+    shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    },
+
     // 处理输入
     handleInput(key) {
         const keyUpper = key.toUpperCase();
@@ -188,6 +412,9 @@ const Game = {
             case 4:
                 this.handleLevel4Input(keyUpper);
                 break;
+            case 6:
+                this.handleLevel6Input(keyUpper);
+                break;
         }
     },
 
@@ -201,6 +428,7 @@ const Game = {
             this.playSound('correct');
             
             setTimeout(() => {
+                if (this.currentLevel !== 1) return;
                 this.level1Index++;
                 this.loadTask();
             }, 1000);
@@ -222,6 +450,7 @@ const Game = {
             this.playSound('correct');
             
             setTimeout(() => {
+                if (this.currentLevel !== 2) return;
                 this.level2Index++;
                 this.loadTask();
             }, 1000);
@@ -255,6 +484,7 @@ const Game = {
                 this.playSound('correct');
                 
                 setTimeout(() => {
+                    if (this.currentLevel !== 3) return;
                     this.level3Index++;
                     this.userInput = '';
                     this.loadTask();
@@ -308,6 +538,7 @@ const Game = {
                 this.playSound('correct');
                 
                 setTimeout(() => {
+                    if (this.currentLevel !== 4) return;
                     this.level4Index++;
                     this.userInput = '';
                     this.loadTask();
@@ -373,15 +604,75 @@ const Game = {
     completeLevel() {
         const accuracy = this.correctCount / (this.correctCount + this.wrongCount) || 0;
         let stars = 1;
-        
+
         if (accuracy >= 0.9 && this.correctCount >= 10) stars = 3;
         else if (accuracy >= 0.7 && this.correctCount >= 5) stars = 2;
-        
+
         Storage.updateLevel(this.currentLevel, stars);
-        
-        alert(`恭喜完成 Level ${this.currentLevel}！\n正确: ${this.correctCount}\n错误: ${this.wrongCount}\n获得星星: ${stars}⭐`);
-        
-        exitGame();
+        this.finishLevel(stars);
+    },
+
+    // 计时：开始
+    startTimer() {
+        this.startTime = Date.now();
+        this.elapsedMs = 0;
+        const el = document.getElementById('elapsed-time');
+        if (el) el.textContent = '0:00';
+        if (this.timerInterval) clearInterval(this.timerInterval);
+        this.timerInterval = setInterval(() => {
+            this.elapsedMs = Date.now() - this.startTime;
+            if (el) el.textContent = this.fmtTime(this.elapsedMs);
+        }, 250);
+    },
+
+    // 计时：停止并返回用时（毫秒）
+    stopTimer() {
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
+        this.elapsedMs = this.startTime ? Date.now() - this.startTime : 0;
+        return this.elapsedMs;
+    },
+
+    // 格式化毫秒为 m:ss
+    fmtTime(ms) {
+        const total = Math.floor(ms / 1000);
+        const m = Math.floor(total / 60);
+        const s = total % 60;
+        return `${m}:${s < 10 ? '0' + s : s}`;
+    },
+
+    // 语音朗读
+    speak(text, lang) {
+        try {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = lang || 'en-US';
+            u.rate = 0.9;
+            window.speechSynthesis.speak(u);
+        } catch (e) { /* 忽略不支持的环境 */ }
+    },
+
+    // 朗读当前题目
+    speakCurrent() {
+        if (this.currentSpeech) this.speak(this.currentSpeech.text, this.currentSpeech.lang);
+    },
+
+    // 显示/隐藏「听」按钮
+    showListenButton(show) {
+        const b = document.getElementById('listen-btn');
+        if (b) b.style.display = show ? 'inline-block' : 'none';
+    },
+
+    // 弹出成绩卡（功能 1：计时 + 分享）
+    finishLevel(stars) {
+        const elapsed = this.stopTimer();
+        this.showListenButton(false);
+        if (typeof showResult === 'function') {
+            showResult(this.currentLevel, stars, elapsed, this.correctCount, this.wrongCount);
+        }
     },
 
     // 播放音效
@@ -494,14 +785,11 @@ const Game = {
     },
 
     endBubbleGame() {
+        const score = this.bubbleGame ? this.bubbleGame.score : 0;
         this.cleanupBubbleGame();
-        
-        const stars = this.bubbleGame.score >= 500 ? 3 : this.bubbleGame.score >= 300 ? 2 : 1;
+        const stars = score >= 500 ? 3 : score >= 300 ? 2 : 1;
         Storage.updateLevel(5, stars);
-        
-        alert(`游戏结束！\n得分: ${this.bubbleGame.score}\n获得星星: ${stars}⭐`);
-        
-        exitGame();
+        this.finishLevel(stars);
     },
 
     // 清理泡泡游戏

@@ -14,9 +14,12 @@ A fun typing game designed for kids around 10 years old. Pure front-end, no inst
 
 ## 功能特点 / Features
 
-- 🎮 **5 个等级 / 5 Levels**：从键盘认识到游戏模式，循序渐进
+- 🎮 **7 个等级 / 7 Levels**：从键盘认识到中文拼音，循序渐进
 - ⌨️ **虚拟键盘 / Virtual Keyboard**：可视化键盘布局，按键高亮提示
 - ⭐ **奖励系统 / Reward System**：完成关卡获得星星奖励
+- ⏱️ **计时与分享 / Timer & Share**：每关自动计时，通关后可分享用时与成绩（Web Share / 复制）
+- 🖼️ **英语情景填句 / English Fill-in**：看图补词，答对后用语音读一遍整句
+- 🀄 **中文拼音 / Chinese Pinyin**：按英文意思与拼音提示输入中文，从单字晋级到简单句
 - 📊 **进度追踪 / Progress Tracking**：使用 LocalStorage 自动保存学习进度
 - 🔊 **音效反馈 / Sound Feedback**：即时音效反馈，可自由开关
 - 🎨 **友好界面 / Kid-friendly UI**：卡通风格、色彩丰富、大字体可调节
@@ -30,6 +33,8 @@ A fun typing game designed for kids around 10 years old. Pure front-end, no inst
 | Level 3 | 单词练习 — 练习简单单词（带 Emoji 图片提示） |
 | Level 4 | 句子练习 — 练习完整句子输入 |
 | Level 5 | 游戏模式 — 打字泡泡游戏，提高打字速度 |
+| Level 6 | 英语情景填句 — 看图补全缺失单词，答对听语音朗读 |
+| Level 7 | 中文拼音 — 根据英文与拼音提示输入中文，从单字到简单句 |
 
 | Level | Description |
 | --- | --- |
@@ -38,6 +43,8 @@ A fun typing game designed for kids around 10 years old. Pure front-end, no inst
 | Level 3 | Word Practice — simple words with emoji hints |
 | Level 4 | Sentence Practice — type complete sentences |
 | Level 5 | Game Mode — typing bubbles to boost your speed |
+| Level 6 | English Fill-in — complete the missing word from a picture, then hear it read aloud |
+| Level 7 | Chinese Pinyin — type Chinese by English meaning & pinyin hints, from single chars to simple sentences |
 
 ## 在线体验 / Live Demo
 
