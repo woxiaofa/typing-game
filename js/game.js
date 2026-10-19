@@ -319,11 +319,10 @@ const Game = {
         this.currentSpeech = { text: item.zh, lang: 'zh-CN' };
         this.showListenButton(true);
 
-        // 生成打乱顺序的选字按钮
+        // 生成选字按钮（按词语原顺序显示，避免误导）
         const chars = item.zh.split('');
-        const shuffled = this.shuffle(chars.slice());
         charsEl.innerHTML = '';
-        shuffled.forEach(ch => {
+        chars.forEach(ch => {
             const b = document.createElement('button');
             b.className = 'char-btn';
             b.textContent = ch;
