@@ -18,7 +18,7 @@ const Storage = {
                 sound: true,
                 music: true,
                 fontSize: 'normal',
-                theme: 'default'
+                theme: 'starry'
             }
         };
         if (!progress) return def;
@@ -58,7 +58,7 @@ const Storage = {
             sound: true,
             music: true,
             fontSize: 'normal',
-            theme: 'default'
+            theme: 'starry'
         };
     },
 

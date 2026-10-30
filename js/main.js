@@ -245,7 +245,9 @@ function loadSettings() {
     document.getElementById('sound-enabled').checked = settings.sound;
     document.getElementById('music-enabled').checked = settings.music;
     document.getElementById('font-size').value = settings.fontSize;
-    document.getElementById('theme-select').value = settings.theme || 'default';
+    // 旧存档里的 'default' / 空值 统一按当前默认皮肤（星空）处理
+    const t = (!settings.theme || settings.theme === 'default') ? 'starry' : settings.theme;
+    document.getElementById('theme-select').value = t;
     
     // 应用字体大小
     document.body.className = `font-${settings.fontSize}`;
@@ -254,11 +256,13 @@ function loadSettings() {
 }
 
 // 应用皮肤（通过 data-theme 属性，与字体 class 互不冲突）
+// 可选：starry(默认) / forest / candy / classic
 function applyTheme(theme) {
-    if (theme === 'candy') {
-        document.body.dataset.theme = 'candy';
+    const t = (!theme || theme === 'default') ? 'starry' : theme;
+    if (t === 'classic') {
+        delete document.body.dataset.theme; // 经典紫 = 基础样式，无需额外标记
     } else {
-        delete document.body.dataset.theme;
+        document.body.dataset.theme = t;
     }
 }
 

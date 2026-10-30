@@ -70,6 +70,10 @@
                     <span class="stat-value" id="total-stars">0</span>
                 </div>
             </div>
+
+            <button type="button" class="skin-hint" onclick="showSettings()">
+                🎨 想换个风格？点这里换皮肤（星空 / 森林 / 糖果 / 经典）
+            </button>
         </div>
     </div>
 
@@ -214,8 +218,10 @@
                 <div class="setting-item">
                     <label>皮肤主题</label>
                     <select id="theme-select" onchange="changeTheme(this.value)">
-                        <option value="default">经典紫（默认）</option>
-                        <option value="candy">糖果黏土风</option>
+                        <option value="starry">🌌 星空（默认）</option>
+                        <option value="forest">🌲 森林</option>
+                        <option value="candy">🍬 糖果黏土风</option>
+                        <option value="classic">💜 经典紫</option>
                     </select>
                 </div>
             </div>
@@ -243,6 +249,7 @@
                 <li><strong>进度自动保存</strong>：学习记录保存在浏览器本地（LocalStorage），关掉网页下次继续。</li>
                 <li><strong>即时音效反馈</strong>：按键正确、过关都有音效，可自由开关；另有背景音乐开关。</li>
                 <li><strong>字号三档可调</strong>：正常 / 大 / 超大，照顾不同年龄段和视力情况。</li>
+                <li><strong>四款皮肤自由切换</strong>：🌌 星空（默认）、🌲 森林、🍬 糖果黏土风、💜 经典紫，在「设置 → 皮肤主题」里一键切换，换风格保持进度不变。</li>
                 <li><strong>卡通风格界面</strong>：色彩鲜明、按钮大，适合孩子独立操作。</li>
             </ul>
         </article>
@@ -325,6 +332,10 @@
             <details>
                 <summary>能练习中文拼音吗？</summary>
                 <p>可以。Level 7 是中文拼音：给出英文意思与拼音提示，对照拼音输入对应汉字，从单字晋级到「你好」「你在哪里？」等简单常用句，是学拼音、中文拼音入门的轻松方式。</p>
+            </details>
+            <details>
+                <summary>可以换皮肤吗？有几种风格？</summary>
+                <p>可以。内置四款皮肤：🌌 星空（默认）、🌲 森林、🍬 糖果黏土风、💜 经典紫。首页主菜单的换肤提示条，或「设置 → 皮肤主题」都能一键切换，切换不会影响已保存的进度和星星。</p>
             </details>
             <details>
                 <summary>能把游戏放到自己的网站或班级群里吗？</summary>
@@ -419,6 +430,7 @@
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
       "featureList": [
         "七关循序渐进：认识键盘、字母练习、单词练习、句子练习、打字泡泡游戏、英语情景填句、中文拼音练习",
+        "四款皮肤自由切换：星空（默认）、森林、糖果黏土风、经典紫",
         "虚拟键盘高亮提示",
         "星星奖励系统",
         "LocalStorage 自动保存学习进度",
@@ -485,6 +497,11 @@
           "@type": "Question",
           "name": "能练习中文拼音吗？",
           "acceptedAnswer": { "@type": "Answer", "text": "可以。Level 7 是中文拼音：给出英文意思与拼音提示，对照拼音输入对应汉字，从单字晋级到「你好」「你在哪里？」等简单常用句，是学拼音、中文拼音入门的轻松方式。" }
+        },
+        {
+          "@type": "Question",
+          "name": "可以换皮肤吗？有几种风格？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可以。内置四款皮肤：星空（默认）、森林、糖果黏土风、经典紫。首页主菜单的换肤提示条，或「设置 → 皮肤主题」都能一键切换，切换不会影响已保存的进度和星星。" }
         }
       ]
     },
