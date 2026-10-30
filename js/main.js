@@ -245,9 +245,29 @@ function loadSettings() {
     document.getElementById('sound-enabled').checked = settings.sound;
     document.getElementById('music-enabled').checked = settings.music;
     document.getElementById('font-size').value = settings.fontSize;
+    document.getElementById('theme-select').value = settings.theme || 'default';
     
     // 应用字体大小
     document.body.className = `font-${settings.fontSize}`;
+    // 应用皮肤
+    applyTheme(settings.theme);
+}
+
+// 应用皮肤（通过 data-theme 属性，与字体 class 互不冲突）
+function applyTheme(theme) {
+    if (theme === 'candy') {
+        document.body.dataset.theme = 'candy';
+    } else {
+        delete document.body.dataset.theme;
+    }
+}
+
+// 切换皮肤
+function changeTheme(theme) {
+    const settings = Storage.getSettings();
+    settings.theme = theme;
+    Storage.saveSettings(settings);
+    applyTheme(theme);
 }
 
 // 切换音效

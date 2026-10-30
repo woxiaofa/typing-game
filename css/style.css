@@ -1549,3 +1549,216 @@ body.font-xlarge .task-text {
     font-size: 1.25em;
   }
 }
+
+/* ============================================================
+   糖果 / 黏土风皮肤（theme-candy）
+   默认主题不受影响；仅当 <body class="theme-candy"> 时生效
+   ============================================================ */
+body[data-theme="candy"] {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 224, 138, 0.35) 0 90px, transparent 91px),
+    radial-gradient(circle at 88% 12%, rgba(182, 232, 210, 0.4) 0 110px, transparent 111px),
+    radial-gradient(circle at 80% 80%, rgba(255, 158, 196, 0.35) 0 130px, transparent 131px),
+    radial-gradient(circle at 18% 82%, rgba(255, 207, 224, 0.5) 0 120px, transparent 121px),
+    linear-gradient(160deg, #FFE6EF 0%, #FBD3E2 45%, #F6C9DD 100%);
+  color: #6a4453;
+}
+
+/* 标题 / 副标题 */
+body[data-theme="candy"] .title,
+body[data-theme="candy"] .subtitle {
+  color: #fff;
+  text-shadow: 0 4px 12px rgba(199, 91, 122, 0.45);
+}
+body[data-theme="candy"] .subtitle { opacity: 0.95; }
+
+/* 章节标题（选关 / 进度 / 设置 / 关卡说明 等） */
+body[data-theme="candy"] h2 {
+  color: #fff;
+  text-shadow: 0 3px 8px rgba(199, 91, 122, 0.5);
+}
+
+/* 通用卡片：奶油色 + 膨胀 3D 质感 */
+body[data-theme="candy"] .level-card,
+body[data-theme="candy"] .seo-card,
+body[data-theme="candy"] .result-card,
+body[data-theme="candy"] .practice-area,
+body[data-theme="candy"] .game-header,
+body[data-theme="candy"] .game-area,
+body[data-theme="candy"] .stat-item {
+  background: #FFFDF8;
+  border-radius: 32px;
+  box-shadow:
+    0 18px 40px rgba(199, 91, 122, 0.18),
+    inset 6px 6px 14px rgba(255, 255, 255, 0.9),
+    inset -6px -6px 14px rgba(243, 200, 217, 0.4);
+}
+
+/* 关卡卡片 */
+body[data-theme="candy"] .level-card {
+  border: none;
+  padding: 28px 18px;
+}
+body[data-theme="candy"] .level-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 26px 52px rgba(199, 91, 122, 0.28),
+    inset 6px 6px 14px rgba(255, 255, 255, 0.9),
+    inset -6px -6px 14px rgba(243, 200, 217, 0.4);
+}
+body[data-theme="candy"] .level-title { color: #8a4a63; }
+body[data-theme="candy"] .level-en { color: #b98ca0; }
+body[data-theme="candy"] .level-icon { filter: drop-shadow(0 5px 8px rgba(199, 91, 122, 0.3)); }
+
+/* 主按钮：泡泡糖粉，膨胀玻璃感 */
+body[data-theme="candy"] .btn {
+  border-radius: 26px;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 12px 24px rgba(255, 130, 170, 0.45),
+    inset 4px 4px 10px rgba(255, 255, 255, 0.55),
+    inset -4px -4px 10px rgba(214, 90, 130, 0.4);
+}
+body[data-theme="candy"] .btn-primary {
+  background: linear-gradient(160deg, #FF9EC4 0%, #FF7FB0 100%);
+}
+body[data-theme="candy"] .btn-secondary {
+  background: linear-gradient(160deg, #B6E8D2 0%, #8FDCC0 100%);
+  color: #2f6b54;
+}
+body[data-theme="candy"] .btn-back {
+  background: linear-gradient(160deg, #FFD9A0 0%, #FFC46B 100%);
+  color: #7a4b13;
+}
+body[data-theme="candy"] .btn-small {
+  background: linear-gradient(160deg, #FFC2DA 0%, #FF9EC4 100%);
+  color: #fff;
+}
+body[data-theme="candy"] .btn:hover {
+  transform: translateY(-3px);
+}
+
+/* 听按钮 */
+body[data-theme="candy"] #listen-btn {
+  background: linear-gradient(160deg, #FF9EC4 0%, #FF7FB0 100%);
+  color: #fff;
+  border-radius: 22px;
+}
+
+/* 进度统计块 */
+body[data-theme="candy"] .stat-item { padding: 20px 30px; }
+body[data-theme="candy"] .stat-label { color: #c08aa0; }
+body[data-theme="candy"] .stat-value { color: #ff6fa3; }
+
+/* 练习区文字 */
+body[data-theme="candy"] .task-text { color: #ff6fa3; }
+body[data-theme="candy"] .input-hint { color: #a8788c; }
+body[data-theme="candy"] .input-hint .highlight { color: #ff6fa3; }
+body[data-theme="candy"] .feedback-area { color: #8a4a63; }
+body[data-theme="candy"] .feedback { border-radius: 16px; }
+
+/* 中文拼音输入区 */
+body[data-theme="candy"] .chinese-prompt { color: #8a4a63; }
+body[data-theme="candy"] .chinese-pinyin { color: #ff7fb0; }
+body[data-theme="candy"] .chinese-input {
+  background: #FFFDF8;
+  border: 3px solid #FFD3E2;
+  border-radius: 18px;
+}
+body[data-theme="candy"] .chinese-input:focus { border-color: #ff7fb0; }
+
+/* 选字按钮：糖果方块 */
+body[data-theme="candy"] .char-btn {
+  background: #FFFDF8;
+  border: none;
+  border-radius: 16px;
+  color: #8a4a63;
+  box-shadow:
+    0 6px 12px rgba(199, 91, 122, 0.22),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.9),
+    inset -3px -3px 6px rgba(243, 200, 217, 0.5);
+}
+body[data-theme="candy"] .char-btn:hover {
+  background: #FFF4F8;
+  transform: translateY(-3px);
+}
+body[data-theme="candy"] .char-btn.used { opacity: 0.4; }
+body[data-theme="candy"] .btn-char-back {
+  background: linear-gradient(160deg, #FFD9A0 0%, #FFC46B 100%);
+  color: #7a4b13;
+}
+
+/* 虚拟键盘：膨胀糖果键 */
+body[data-theme="candy"] .virtual-keyboard {
+  background: #FFEAF2;
+  border-radius: 24px;
+  box-shadow: inset 0 4px 12px rgba(199, 91, 122, 0.12);
+}
+body[data-theme="candy"] .key {
+  background: #FFFDF8;
+  border: none;
+  border-radius: 14px;
+  color: #8a4a63;
+  box-shadow:
+    0 6px 12px rgba(199, 91, 122, 0.22),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.9),
+    inset -3px -3px 6px rgba(243, 200, 217, 0.5);
+}
+body[data-theme="candy"] .key:hover {
+  background: #FFF4F8;
+  transform: translateY(-2px);
+}
+body[data-theme="candy"] .key.active {
+  background: linear-gradient(160deg, #FF9EC4 0%, #FF7FB0 100%);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(255, 127, 176, 0.5);
+}
+body[data-theme="candy"] .key.highlight {
+  background: linear-gradient(160deg, #FFE08A 0%, #FFC94D 100%);
+  color: #7a4b13;
+  border: none;
+}
+
+/* 成绩弹窗 */
+body[data-theme="candy"] .result-overlay {
+  background: rgba(122, 62, 92, 0.5);
+}
+body[data-theme="candy"] .result-card h2 { color: #ff6fa3; }
+body[data-theme="candy"] .result-stats { color: #8a4a63; }
+body[data-theme="candy"] .result-stats .time-big { color: #ff6fa3; }
+
+/* SEO 内容卡片 */
+body[data-theme="candy"] .seo-card { color: #5a3d4a; }
+body[data-theme="candy"] .seo-card h2 {
+  color: #ff6fa3;
+  border-bottom-color: #ffe1ec;
+}
+body[data-theme="candy"] .seo-card strong { color: #d65a82; }
+body[data-theme="candy"] .seo-meta {
+  background: #fff1f6;
+  color: #b07a90;
+}
+body[data-theme="candy"] .seo-card summary { color: #c75b7a; }
+body[data-theme="candy"] .seo-card summary::before { color: #ff9ec4; }
+body[data-theme="candy"] .seo-card details { border-bottom-color: #ffe1ec; }
+body[data-theme="candy"] .seo-card code {
+  background: #ffe1ec;
+  color: #d65a82;
+}
+
+/* 设置控件 */
+body[data-theme="candy"] .setting-item label { color: #8a4a63; }
+body[data-theme="candy"] input[type="checkbox"] { accent-color: #ff7fb0; width: 20px; height: 20px; }
+body[data-theme="candy"] select {
+  background: #FFFDF8;
+  color: #8a4a63;
+  border: 2px solid #ffd3e2;
+  border-radius: 12px;
+  padding: 6px 10px;
+}
+
+/* 页脚 */
+body[data-theme="candy"] .site-footer { color: rgba(138, 74, 99, 0.92); }
+body[data-theme="candy"] .site-footer a { color: #c75b7a; }

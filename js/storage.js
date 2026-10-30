@@ -17,7 +17,8 @@ const Storage = {
             settings: {
                 sound: true,
                 music: true,
-                fontSize: 'normal'
+                fontSize: 'normal',
+                theme: 'default'
             }
         };
         if (!progress) return def;
@@ -56,7 +57,8 @@ const Storage = {
         return progress.settings || {
             sound: true,
             music: true,
-            fontSize: 'normal'
+            fontSize: 'normal',
+            theme: 'default'
         };
     },
 
