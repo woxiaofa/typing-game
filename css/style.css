@@ -1551,34 +1551,87 @@ body.font-xlarge .task-text {
 }
 
 /* ============================================================
-   糖果 / 黏土风皮肤（theme-candy）
-   默认主题不受影响；仅当 <body class="theme-candy"> 时生效
+   糖果 / 黏土风皮肤（theme-candy）—— 拟物版
+   哑光泡沫颗粒 + 膨胀浮雕 + 顶部镜面高光 + 底部厚度唇边 + 马卡龙装饰
+   默认主题不受影响；仅当 <body data-theme="candy"> 时生效
    ============================================================ */
 body[data-theme="candy"] {
+  /* ---- 拟物材质变量（后代规则可直接复用） ---- */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)' opacity='0.25'/%3E%3C/svg%3E");
+
+  --card-base: linear-gradient(168deg, #FFFEFB 0%, #FFF7EC 46%, #FBEBDD 100%);
+  --card-gloss: radial-gradient(circle at 24% 7%, rgba(255, 255, 255, 0.95) 0 11%, rgba(255, 255, 255, 0) 36%);
+  --card-shadow:
+    0 30px 54px rgba(190, 82, 116, 0.24),
+    0 8px 16px rgba(190, 82, 116, 0.14),
+    0 3px 0 rgba(255, 255, 255, 0.9),
+    inset 0 7px 12px rgba(255, 255, 255, 0.95),
+    inset 0 -11px 18px rgba(233, 178, 200, 0.5),
+    inset 9px 0 15px rgba(255, 255, 255, 0.55),
+    inset -9px 0 15px rgba(233, 178, 200, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+
+  --btn-gloss: radial-gradient(ellipse at 32% 12%, rgba(255, 255, 255, 0.95) 0 7%, rgba(255, 255, 255, 0.3) 18%, rgba(255, 255, 255, 0) 40%);
+
+  --btn-pink:
+    0 20px 32px rgba(206, 74, 122, 0.42),
+    0 5px 0 rgba(203, 66, 112, 0.6),
+    inset 0 7px 11px rgba(255, 255, 255, 0.55),
+    inset 0 -9px 14px rgba(178, 48, 96, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  --btn-mint:
+    0 20px 32px rgba(74, 155, 122, 0.34),
+    0 5px 0 rgba(64, 145, 112, 0.55),
+    inset 0 7px 11px rgba(255, 255, 255, 0.6),
+    inset 0 -9px 14px rgba(50, 130, 96, 0.42),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+  --btn-amber:
+    0 20px 32px rgba(190, 130, 30, 0.34),
+    0 5px 0 rgba(178, 120, 24, 0.55),
+    inset 0 7px 11px rgba(255, 255, 255, 0.6),
+    inset 0 -9px 14px rgba(160, 105, 12, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+
+  --puff-shadow:
+    0 7px 12px rgba(199, 91, 122, 0.24),
+    0 3px 0 rgba(228, 172, 195, 0.6),
+    inset 0 4px 7px rgba(255, 255, 255, 0.92),
+    inset 0 -5px 9px rgba(233, 178, 200, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+
+  /* ---- 场景背景：柔雾粉 + 马卡龙 + 糖果小点 ---- */
   background:
-    radial-gradient(circle at 12% 18%, rgba(255, 224, 138, 0.35) 0 90px, transparent 91px),
-    radial-gradient(circle at 88% 12%, rgba(182, 232, 210, 0.4) 0 110px, transparent 111px),
-    radial-gradient(circle at 80% 80%, rgba(255, 158, 196, 0.35) 0 130px, transparent 131px),
-    radial-gradient(circle at 18% 82%, rgba(255, 207, 224, 0.5) 0 120px, transparent 121px),
-    linear-gradient(160deg, #FFE6EF 0%, #FBD3E2 45%, #F6C9DD 100%);
+    radial-gradient(circle at 91% 11%, #FFF3E0 0 28px, #FFDCB8 28px 38px, #F3B78C 38px 44px, transparent 45px),
+    radial-gradient(circle at 9% 88%, #EDFBF3 0 32px, #BCEAD7 32px 42px, #8ED9BE 42px 48px, transparent 49px),
+    radial-gradient(circle at 21% 17%, rgba(255, 158, 196, 0.5) 0 12px, transparent 13px),
+    radial-gradient(circle at 78% 63%, rgba(160, 226, 200, 0.55) 0 15px, transparent 16px),
+    radial-gradient(circle at 63% 90%, rgba(255, 214, 130, 0.5) 0 10px, transparent 11px),
+    radial-gradient(circle at 33% 76%, rgba(255, 255, 255, 0.55) 0 9px, transparent 10px),
+    radial-gradient(circle at 12% 20%, rgba(255, 224, 138, 0.26) 0 92px, transparent 93px),
+    radial-gradient(circle at 82% 82%, rgba(255, 158, 196, 0.24) 0 132px, transparent 133px),
+    linear-gradient(160deg, #FFE7F0 0%, #FBD3E2 45%, #F5C7DC 100%);
+  background-attachment: fixed;
   color: #6a4453;
 }
 
 /* 标题 / 副标题 */
-body[data-theme="candy"] .title,
-body[data-theme="candy"] .subtitle {
+body[data-theme="candy"] .title {
   color: #fff;
-  text-shadow: 0 4px 12px rgba(199, 91, 122, 0.45);
+  text-shadow: 0 4px 14px rgba(199, 91, 122, 0.55);
 }
-body[data-theme="candy"] .subtitle { opacity: 0.95; }
+body[data-theme="candy"] .subtitle {
+  color: #a83f63;
+  opacity: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
 
 /* 章节标题（选关 / 进度 / 设置 / 关卡说明 等） */
 body[data-theme="candy"] h2 {
   color: #fff;
-  text-shadow: 0 3px 8px rgba(199, 91, 122, 0.5);
+  text-shadow: 0 3px 9px rgba(199, 91, 122, 0.55);
 }
 
-/* 通用卡片：奶油色 + 膨胀 3D 质感 */
+/* 通用卡片：奶油泡沫实体（颗粒 + 光泽 + 浮雕） */
 body[data-theme="candy"] .level-card,
 body[data-theme="candy"] .seo-card,
 body[data-theme="candy"] .result-card,
@@ -1586,68 +1639,91 @@ body[data-theme="candy"] .practice-area,
 body[data-theme="candy"] .game-header,
 body[data-theme="candy"] .game-area,
 body[data-theme="candy"] .stat-item {
-  background: #FFFDF8;
-  border-radius: 32px;
-  box-shadow:
-    0 18px 40px rgba(199, 91, 122, 0.18),
-    inset 6px 6px 14px rgba(255, 255, 255, 0.9),
-    inset -6px -6px 14px rgba(243, 200, 217, 0.4);
+  border-radius: 34px;
+  background-color: #FFFDF8;
+  background-image: var(--grain), var(--card-gloss), var(--card-base);
+  background-blend-mode: soft-light, normal, normal;
+  box-shadow: var(--card-shadow);
 }
 
 /* 关卡卡片 */
 body[data-theme="candy"] .level-card {
   border: none;
   padding: 28px 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 body[data-theme="candy"] .level-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-7px);
   box-shadow:
-    0 26px 52px rgba(199, 91, 122, 0.28),
-    inset 6px 6px 14px rgba(255, 255, 255, 0.9),
-    inset -6px -6px 14px rgba(243, 200, 217, 0.4);
+    0 38px 64px rgba(190, 82, 116, 0.3),
+    0 10px 18px rgba(190, 82, 116, 0.16),
+    0 3px 0 rgba(255, 255, 255, 0.9),
+    inset 0 7px 12px rgba(255, 255, 255, 0.95),
+    inset 0 -11px 18px rgba(233, 178, 200, 0.5),
+    inset 9px 0 15px rgba(255, 255, 255, 0.55),
+    inset -9px 0 15px rgba(233, 178, 200, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65);
 }
 body[data-theme="candy"] .level-title { color: #8a4a63; }
 body[data-theme="candy"] .level-en { color: #b98ca0; }
-body[data-theme="candy"] .level-icon { filter: drop-shadow(0 5px 8px rgba(199, 91, 122, 0.3)); }
+body[data-theme="candy"] .level-icon { filter: drop-shadow(0 6px 9px rgba(199, 91, 122, 0.32)); }
 
-/* 主按钮：泡泡糖粉，膨胀玻璃感 */
+/* 按钮：糖果软胶实体（镜面高光 + 厚度唇边） */
 body[data-theme="candy"] .btn {
-  border-radius: 26px;
+  border-radius: 30px;
   color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  box-shadow:
-    0 12px 24px rgba(255, 130, 170, 0.45),
-    inset 4px 4px 10px rgba(255, 255, 255, 0.55),
-    inset -4px -4px 10px rgba(214, 90, 130, 0.4);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 body[data-theme="candy"] .btn-primary {
-  background: linear-gradient(160deg, #FF9EC4 0%, #FF7FB0 100%);
+  background-image: var(--btn-gloss),
+    linear-gradient(168deg, #FFB7D6 0%, #FF8FBC 44%, #F56CA6 100%);
+  box-shadow: var(--btn-pink);
 }
 body[data-theme="candy"] .btn-secondary {
-  background: linear-gradient(160deg, #B6E8D2 0%, #8FDCC0 100%);
-  color: #2f6b54;
+  background-image: var(--btn-gloss),
+    linear-gradient(168deg, #D6F2E4 0%, #A9E3C9 44%, #7ED2B3 100%);
+  color: #1f5340;
+  text-shadow: none;
+  box-shadow: var(--btn-mint);
 }
 body[data-theme="candy"] .btn-back {
-  background: linear-gradient(160deg, #FFD9A0 0%, #FFC46B 100%);
-  color: #7a4b13;
+  background-image: var(--btn-gloss),
+    linear-gradient(168deg, #FFE9C0 0%, #FFD07A 44%, #F4B242 100%);
+  color: #6b3f07;
+  text-shadow: none;
+  box-shadow: var(--btn-amber);
 }
 body[data-theme="candy"] .btn-small {
-  background: linear-gradient(160deg, #FFC2DA 0%, #FF9EC4 100%);
+  background-image: var(--btn-gloss),
+    linear-gradient(168deg, #FFC9DE 0%, #FF9EC4 100%);
   color: #fff;
+  box-shadow: var(--btn-pink);
 }
 body[data-theme="candy"] .btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+}
+body[data-theme="candy"] .btn:active {
+  transform: translateY(2px);
 }
 
 /* 听按钮 */
 body[data-theme="candy"] #listen-btn {
-  background: linear-gradient(160deg, #FF9EC4 0%, #FF7FB0 100%);
+  background-image: var(--btn-gloss),
+    linear-gradient(168deg, #FFB7D6 0%, #FF8FBC 100%);
   color: #fff;
-  border-radius: 22px;
+  border-radius: 24px;
+  box-shadow: var(--btn-pink);
 }
 
-/* 进度统计块 */
-body[data-theme="candy"] .stat-item { padding: 20px 30px; }
+/* 进度统计块：加厚立体感 */
+body[data-theme="candy"] .stat-item {
+  padding: 20px 30px;
+  border-radius: 26px;
+  box-shadow:
+    var(--puff-shadow),
+    0 14px 26px rgba(199, 91, 122, 0.22);
+}
 body[data-theme="candy"] .stat-label { color: #c08aa0; }
 body[data-theme="candy"] .stat-value { color: #ff6fa3; }
 
@@ -1656,74 +1732,89 @@ body[data-theme="candy"] .task-text { color: #ff6fa3; }
 body[data-theme="candy"] .input-hint { color: #a8788c; }
 body[data-theme="candy"] .input-hint .highlight { color: #ff6fa3; }
 body[data-theme="candy"] .feedback-area { color: #8a4a63; }
-body[data-theme="candy"] .feedback { border-radius: 16px; }
+body[data-theme="candy"] .feedback { border-radius: 18px; }
 
 /* 中文拼音输入区 */
 body[data-theme="candy"] .chinese-prompt { color: #8a4a63; }
 body[data-theme="candy"] .chinese-pinyin { color: #ff7fb0; }
 body[data-theme="candy"] .chinese-input {
-  background: #FFFDF8;
+  background-color: #FFFDF8;
+  background-image: var(--card-base);
   border: 3px solid #FFD3E2;
-  border-radius: 18px;
+  border-radius: 20px;
+  box-shadow:
+    inset 0 4px 8px rgba(233, 178, 200, 0.45),
+    inset 0 -3px 6px rgba(255, 255, 255, 0.9);
 }
 body[data-theme="candy"] .chinese-input:focus { border-color: #ff7fb0; }
 
-/* 选字按钮：糖果方块 */
+/* 选字按钮：膨胀糖果方块 */
 body[data-theme="candy"] .char-btn {
-  background: #FFFDF8;
   border: none;
-  border-radius: 16px;
+  border-radius: 18px;
   color: #8a4a63;
-  box-shadow:
-    0 6px 12px rgba(199, 91, 122, 0.22),
-    inset 3px 3px 6px rgba(255, 255, 255, 0.9),
-    inset -3px -3px 6px rgba(243, 200, 217, 0.5);
+  background-color: #FFFDF8;
+  background-image: var(--card-gloss), var(--card-base);
+  box-shadow: var(--puff-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 body[data-theme="candy"] .char-btn:hover {
-  background: #FFF4F8;
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 18px rgba(199, 91, 122, 0.3),
+    0 3px 0 rgba(228, 172, 195, 0.6),
+    inset 0 4px 7px rgba(255, 255, 255, 0.95),
+    inset 0 -5px 9px rgba(233, 178, 200, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
 }
-body[data-theme="candy"] .char-btn.used { opacity: 0.4; }
+body[data-theme="candy"] .char-btn:active { transform: translateY(1px) scale(0.96); }
+body[data-theme="candy"] .char-btn.used { opacity: 0.38; }
 body[data-theme="candy"] .btn-char-back {
-  background: linear-gradient(160deg, #FFD9A0 0%, #FFC46B 100%);
-  color: #7a4b13;
+  background-image: var(--btn-gloss),
+    linear-gradient(168deg, #FFE9C0 0%, #FFD07A 100%);
+  color: #6b3f07;
+  box-shadow: var(--btn-amber);
 }
 
 /* 虚拟键盘：膨胀糖果键 */
 body[data-theme="candy"] .virtual-keyboard {
-  background: #FFEAF2;
-  border-radius: 24px;
-  box-shadow: inset 0 4px 12px rgba(199, 91, 122, 0.12);
+  background-color: #FFEAF2;
+  background-image: var(--grain);
+  background-blend-mode: soft-light;
+  border-radius: 26px;
+  box-shadow:
+    inset 0 5px 12px rgba(199, 91, 122, 0.16),
+    inset 0 -4px 10px rgba(255, 255, 255, 0.7);
 }
 body[data-theme="candy"] .key {
-  background: #FFFDF8;
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
   color: #8a4a63;
-  box-shadow:
-    0 6px 12px rgba(199, 91, 122, 0.22),
-    inset 3px 3px 6px rgba(255, 255, 255, 0.9),
-    inset -3px -3px 6px rgba(243, 200, 217, 0.5);
+  background-color: #FFFDF8;
+  background-image: var(--card-gloss), var(--card-base);
+  box-shadow: var(--puff-shadow);
 }
 body[data-theme="candy"] .key:hover {
-  background: #FFF4F8;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 body[data-theme="candy"] .key.active {
-  background: linear-gradient(160deg, #FF9EC4 0%, #FF7FB0 100%);
+  background-image: var(--btn-gloss),
+    linear-gradient(168deg, #FFB7D6 0%, #FF8FBC 100%);
   color: #fff;
   transform: scale(1.08);
-  box-shadow: 0 8px 16px rgba(255, 127, 176, 0.5);
+  box-shadow: var(--btn-pink);
 }
 body[data-theme="candy"] .key.highlight {
-  background: linear-gradient(160deg, #FFE08A 0%, #FFC94D 100%);
-  color: #7a4b13;
+  background-image: var(--btn-gloss),
+    linear-gradient(168deg, #FFE9A0 0%, #FFC94D 100%);
+  color: #6b3f07;
   border: none;
+  box-shadow: var(--btn-amber);
 }
 
 /* 成绩弹窗 */
 body[data-theme="candy"] .result-overlay {
-  background: rgba(122, 62, 92, 0.5);
+  background: rgba(122, 62, 92, 0.55);
 }
 body[data-theme="candy"] .result-card h2 { color: #ff6fa3; }
 body[data-theme="candy"] .result-stats { color: #8a4a63; }
@@ -1752,11 +1843,13 @@ body[data-theme="candy"] .seo-card code {
 body[data-theme="candy"] .setting-item label { color: #8a4a63; }
 body[data-theme="candy"] input[type="checkbox"] { accent-color: #ff7fb0; width: 20px; height: 20px; }
 body[data-theme="candy"] select {
-  background: #FFFDF8;
+  background-color: #FFFDF8;
+  background-image: var(--card-base);
   color: #8a4a63;
   border: 2px solid #ffd3e2;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 6px 10px;
+  box-shadow: inset 0 3px 6px rgba(233, 178, 200, 0.4);
 }
 
 /* 页脚 */
